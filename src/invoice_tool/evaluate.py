@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
 from difflib import SequenceMatcher
@@ -235,10 +236,12 @@ def main(argv: list[str] | None = None) -> None:
     args = ap.parse_args(argv)
     results = json.loads(args.results.read_text(encoding="utf-8"))
     md = to_markdown(evaluate(results, args.truth))
-    print(md)
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(md, encoding="utf-8", newline="\n")
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")  # Windows consoles default to cp1252 (no ₹)
+    print(md)
 
 
 if __name__ == "__main__":
