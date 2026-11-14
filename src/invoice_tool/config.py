@@ -32,6 +32,7 @@ class Settings(BaseModel):
     max_retries: int = 6
     initial_backoff_seconds: float = 4.0
     max_backoff_seconds: float = 90.0
+    request_timeout_seconds: float = 120.0
     categories: list[str]
     required_fields_invoice: list[str]
     required_fields_receipt: list[str]

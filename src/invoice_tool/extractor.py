@@ -74,6 +74,8 @@ def is_daily_quota(exc: Exception) -> bool:
 
 
 def is_retryable(exc: Exception) -> bool:
+    if "Timeout" in type(exc).__name__:  # httpx client-side timeouts
+        return True
     code = getattr(exc, "code", None)
     if not isinstance(code, int) or is_daily_quota(exc):
         return False
@@ -99,8 +101,10 @@ class GeminiExtractor:
         max_backoff: float = 90.0,
         timeout_seconds: float = 180.0,
         sleep: Callable[[float], None] = time.sleep,
+        on_retry: Callable[[str], None] | None = None,
     ):
         self.model = model
+        self._on_retry = on_retry
         self.categories = categories
         self.max_retries = max_retries
         self.initial_backoff = initial_backoff
@@ -132,8 +136,16 @@ class GeminiExtractor:
         exc = state.outcome.exception() if state.outcome else None
         hint = retry_delay_hint(exc) if exc else None
         backoff = self.initial_backoff * 2 ** (state.attempt_number - 1)
-        delay = hint + 1.0 if hint is not None else backoff + random.uniform(0, 1)
-        return min(delay, self.max_backoff)
+        delay = min(
+            hint + 1.0 if hint is not None else backoff + random.uniform(0, 1), self.max_backoff
+        )
+        if self._on_retry and exc is not None:
+            reason = getattr(exc, "code", None) or type(exc).__name__
+            self._on_retry(
+                f"  {reason} from Gemini; retry {state.attempt_number}/{self.max_retries - 1} "
+                f"in {delay:.0f}s"
+            )
+        return delay
 
     def _call(self, data: bytes, mime_type: str) -> Any:
         from google.genai import types

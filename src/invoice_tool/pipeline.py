@@ -85,6 +85,7 @@ def run(
             result.pending.append(path.name)
             continue
         else:
+            log(f"[{i}/{len(files)}] {path.name}: sending to {extractor.model}...")
             try:
                 invoice, raw = extractor.extract(path, data)
             except QuotaExhausted:
