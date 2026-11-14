@@ -26,4 +26,4 @@ jobs:
       - name: Demo on committed samples (recorded responses, no API key)
         run: |
           uv run invoice-tool process samples --replay samples/recorded --out out/demo.xlsx --json-out out/demo.json
-          uv run invoice-eval --results out/demo.json --truth samples/ground_truth
+          uv run invoice-eval --results out/demo.json --truth samples/ground_truth --strict

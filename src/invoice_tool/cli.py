@@ -9,7 +9,7 @@ from typing import Annotated
 import typer
 from dotenv import find_dotenv, load_dotenv
 
-from invoice_tool.cache import ExtractionCache
+from invoice_tool.cache import ExtractionCache, cache_version
 from invoice_tool.config import load_settings
 from invoice_tool.excel import write_workbook
 from invoice_tool.extractor import PROMPT_VERSION, ExtractionError, GeminiExtractor
@@ -18,6 +18,7 @@ from invoice_tool.pipeline import RunResult, run, write_json
 app = typer.Typer(add_completion=False, no_args_is_help=True, help=__doc__)
 
 EXIT_QUOTA = 3
+EXIT_MISSING_RECORDING = 4
 
 
 @app.callback()
@@ -71,16 +72,17 @@ def process(
     """Process every PDF / JPG / PNG in INPUT_DIR and write the review workbook."""
     load_dotenv(find_dotenv(usecwd=True))  # .env from the working directory only
     settings = load_settings(config_dir, model=model)
+    version = cache_version(PROMPT_VERSION, settings.categories)
     if replay:
-        cache = ExtractionCache(replay, PROMPT_VERSION, read_only=True)
+        cache = ExtractionCache(replay, version, read_only=True)
         extractor = None
     else:
-        cache = ExtractionCache(settings.cache_dir, PROMPT_VERSION)
+        cache = ExtractionCache(settings.cache_dir, version)
         try:
             extractor = GeminiExtractor(
                 settings.model,
                 settings.categories,
-                max_retries=settings.max_retries,
+                max_attempts=settings.max_attempts,
                 initial_backoff=settings.initial_backoff_seconds,
                 max_backoff=settings.max_backoff_seconds,
                 timeout_seconds=settings.request_timeout_seconds,
@@ -103,7 +105,7 @@ def process(
 
         typer.echo(f"Watching {input_dir} (Ctrl+C to stop)")
         try:
-            watch_folder(input_dir, once)
+            watch_folder(input_dir, once, log=typer.echo)
         except KeyboardInterrupt:
             typer.echo("Stopped.")
         return
@@ -111,3 +113,10 @@ def process(
     result = once()
     if result.quota_reached:
         raise typer.Exit(code=EXIT_QUOTA)
+    if result.missing_recordings:
+        typer.echo(
+            f"{len(result.missing_recordings)} file(s) have no recorded response: "
+            + ", ".join(result.missing_recordings),
+            err=True,
+        )
+        raise typer.Exit(code=EXIT_MISSING_RECORDING)

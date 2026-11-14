@@ -47,7 +47,7 @@ def generated(tmp_path_factory):
 def test_generates_planned_files(generated):
     files = sorted(p.name for p in generated.iterdir() if p.is_file())
     assert files == sorted(s.file_name for s in PLAN)
-    assert len(files) == 30
+    assert len(files) == 31
 
 
 def test_oracle_flags_match_planted_errors(generated, settings):
@@ -62,7 +62,7 @@ def test_committed_samples_match_their_ground_truth(settings):
 
 def test_plant_coverage():
     counts = Counter(s.plant or s.dup_kind for s in PLAN)
-    assert counts[None] == 15  # clean documents
+    assert counts[None] == 16  # clean documents
     for plant in ["line_sum", "total", "tax_type", "bad_gstin", "rate_date"]:
         assert counts[plant] == 2
     assert counts["cgst_sgst"] == counts["missing_number"] == 1
@@ -86,6 +86,15 @@ def test_receipt_truth_matches_what_is_printed(generated):
         t = json.loads(p.read_text(encoding="utf-8"))
         for li in t["invoice"]["line_items"]:
             assert len(li["description"]) <= 20 and li["hsn_sac"] is None
+
+
+def test_unregistered_cash_memo(generated):
+    t = json.loads((generated / "ground_truth" / "rcpt_031.json").read_text(encoding="utf-8"))
+    inv = t["invoice"]
+    assert inv["document_type"] == "receipt" and t["expected_flags"] == []
+    assert inv["vendor_gstin"] is None and inv["invoice_number"] is None
+    assert inv["cgst"] is None and inv["sgst"] is None and inv["igst"] is None
+    assert all(li["gst_rate"] is None for li in inv["line_items"])
 
 
 def test_exact_duplicate_is_byte_identical(generated):

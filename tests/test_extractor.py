@@ -90,6 +90,15 @@ def test_retries_rate_limit_using_server_delay(tmp_path, clean_invoice):
     assert sleeps == [8.0, 4.0]  # server hint + 1s
 
 
+def test_server_retry_hint_is_not_capped(tmp_path, clean_invoice):
+    f = tmp_path / "a.pdf"
+    f.write_bytes(b"x")
+    outcomes = [rate_limit("120s"), good_json(clean_invoice, category="Other")]
+    ex, sleeps = make(outcomes, max_backoff=90)
+    ex.extract(f)
+    assert sleeps == [121.0]
+
+
 def test_retries_server_errors_with_backoff(tmp_path, clean_invoice):
     f = tmp_path / "a.pdf"
     f.write_bytes(b"x")
@@ -102,10 +111,10 @@ def test_retries_server_errors_with_backoff(tmp_path, clean_invoice):
     assert 2 <= sleeps[0] < 3 and 4 <= sleeps[1] < 5
 
 
-def test_gives_up_after_max_retries(tmp_path):
+def test_gives_up_after_max_attempts(tmp_path):
     f = tmp_path / "a.pdf"
     f.write_bytes(b"x")
-    ex, sleeps = make([rate_limit()] * 3, max_retries=3)
+    ex, sleeps = make([rate_limit()] * 3, max_attempts=3)
     with pytest.raises(ExtractionError, match="request failed"):
         ex.extract(f)
     assert len(sleeps) == 2

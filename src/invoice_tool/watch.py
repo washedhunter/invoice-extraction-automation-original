@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import threading
 import time
+import traceback
 from collections.abc import Callable
 from pathlib import Path
 
@@ -42,11 +43,20 @@ def _snapshot(folder: Path) -> dict[str, int]:
     }
 
 
+def _safe(on_change: Callable[[], None], log: Callable[[str], None]) -> None:
+    try:
+        on_change()
+    except Exception as exc:  # keep watching: e.g. out.xlsx open in Excel (PermissionError)
+        log(f"Error while processing ({type(exc).__name__}: {exc}); still watching.")
+        log(traceback.format_exc(limit=2))
+
+
 def watch(
     folder: Path,
     on_change: Callable[[], None],
     settle_seconds: float = 2.0,
     stop: threading.Event | None = None,
+    log: Callable[[str], None] = print,
 ) -> None:
     """Call on_change() once at start and again after new/changed files have stopped growing."""
     folder = Path(folder)
@@ -56,7 +66,7 @@ def watch(
     observer.schedule(_Handler(changed), str(folder), recursive=False)
     observer.start()
     try:
-        on_change()
+        _safe(on_change, log)
         while not stop.is_set():
             if not changed.wait(timeout=0.5):
                 continue
@@ -69,7 +79,7 @@ def watch(
                 if after == before and not changed.is_set():
                     break
                 before = after
-            on_change()
+            _safe(on_change, log)
     finally:
         observer.stop()
         observer.join(timeout=5)

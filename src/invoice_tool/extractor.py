@@ -21,7 +21,7 @@ from tenacity import RetryCallState, Retrying, retry_if_exception, stop_after_at
 
 from invoice_tool.schema import ExtractedInvoice, gemini_response_schema
 
-PROMPT_VERSION = "v1"
+PROMPT_VERSION = "v2"
 MIME_TYPES = {
     ".pdf": "application/pdf",
     ".jpg": "image/jpeg",
@@ -40,6 +40,9 @@ Rules:
 - invoice_date must be YYYY-MM-DD. Indian dates put the day first (05/07/2025 is 5 July 2025).
   Two-digit years mean 20xx.
 - vendor = the seller who issued the document. buyer_gstin = the billed-to party's GSTIN.
+- document_type: "receipt" for a point-of-sale bill (narrow thermal/till slip, cash memo,
+  restaurant, cafe, cab or shop bill), even if it is headed "TAX INVOICE"; "invoice" for a
+  full-page business invoice with a billed-to party.
 - line_items: one entry per item row. amount = the row's taxable value before GST.
   gst_rate = the total GST percent for that row (CGST% + SGST%, or IGST%). If the rate is only
   printed in the tax lines (e.g. "CGST @ 2.5%" and "SGST @ 2.5%"), use the combined rate (5).
@@ -96,7 +99,7 @@ class GeminiExtractor:
         *,
         client: Any = None,
         api_key: str | None = None,
-        max_retries: int = 6,
+        max_attempts: int = 4,
         initial_backoff: float = 4.0,
         max_backoff: float = 90.0,
         timeout_seconds: float = 180.0,
@@ -106,7 +109,7 @@ class GeminiExtractor:
         self.model = model
         self._on_retry = on_retry
         self.categories = categories
-        self.max_retries = max_retries
+        self.max_attempts = max_attempts
         self.initial_backoff = initial_backoff
         self.max_backoff = max_backoff
         self._sleep = sleep
@@ -136,13 +139,16 @@ class GeminiExtractor:
         exc = state.outcome.exception() if state.outcome else None
         hint = retry_delay_hint(exc) if exc else None
         backoff = self.initial_backoff * 2 ** (state.attempt_number - 1)
-        delay = min(
-            hint + 1.0 if hint is not None else backoff + random.uniform(0, 1), self.max_backoff
+        # the server's own RetryInfo is honoured as given; only our own backoff is capped
+        delay = (
+            hint + 1.0
+            if hint is not None
+            else min(backoff + random.uniform(0, 1), self.max_backoff)
         )
         if self._on_retry and exc is not None:
             reason = getattr(exc, "code", None) or type(exc).__name__
             self._on_retry(
-                f"  {reason} from Gemini; retry {state.attempt_number}/{self.max_retries - 1} "
+                f"  {reason} from Gemini; retry {state.attempt_number}/{self.max_attempts - 1} "
                 f"in {delay:.0f}s"
             )
         return delay
@@ -168,7 +174,7 @@ class GeminiExtractor:
         data = path.read_bytes() if data is None else data
 
         retrying = Retrying(
-            stop=stop_after_attempt(self.max_retries),
+            stop=stop_after_attempt(self.max_attempts),
             wait=self._wait,
             retry=retry_if_exception(is_retryable),
             sleep=self._sleep,

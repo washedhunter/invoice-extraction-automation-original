@@ -22,6 +22,29 @@ def test_cli_override_beats_env(monkeypatch):
     assert load_settings(REPO_ROOT / "config", model="from-cli").model == "from-cli"
 
 
+def test_watch_survives_an_error(tmp_path):
+    calls, logs = [], []
+    stop = threading.Event()
+
+    def on_change():
+        calls.append(1)
+        if len(calls) == 1:
+            raise PermissionError("out.xlsx is open in Excel")
+        stop.set()
+
+    t = threading.Thread(
+        target=watch,
+        args=(tmp_path, on_change),
+        kwargs={"settle_seconds": 0.3, "stop": stop, "log": logs.append},
+    )
+    t.start()
+    time.sleep(0.5)
+    shutil.copy(REPO_ROOT / "samples" / "inv_001.pdf", tmp_path / "new.pdf")
+    t.join(timeout=15)
+    stop.set()
+    assert len(calls) == 2 and "PermissionError" in logs[0]
+
+
 def test_watch_reruns_when_a_file_arrives(tmp_path):
     calls = []
     stop = threading.Event()

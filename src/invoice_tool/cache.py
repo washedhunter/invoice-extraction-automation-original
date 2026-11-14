@@ -6,6 +6,7 @@ Re-running on the same files never calls (or bills) the API again. A recorded-re
 
 from __future__ import annotations
 
+import hashlib
 import json
 from datetime import UTC, datetime
 from pathlib import Path
@@ -14,6 +15,12 @@ from typing import Any
 
 def _safe(model: str) -> str:
     return "".join(ch if ch.isalnum() or ch in "-._" else "_" for ch in model)
+
+
+def cache_version(prompt_version: str, categories: list[str]) -> str:
+    """Prompt version + a short hash of the category list: changing either invalidates the cache."""
+    digest = hashlib.sha256("\n".join(categories).encode("utf-8")).hexdigest()[:8]
+    return f"{prompt_version}-{digest}"
 
 
 class ExtractionCache:
@@ -31,12 +38,17 @@ class ExtractionCache:
             return None
         return json.loads(p.read_text(encoding="utf-8"))
 
-    def get_any_model(self, sha256: str) -> dict[str, Any] | None:
-        """Replay mode: use whatever model the response was recorded with."""
-        matches = sorted(self.root.glob(f"{sha256}__*.json"))
-        if not matches:
+    def get_any_model(self, sha256: str, prefer_model: str | None = None) -> dict[str, Any] | None:
+        """Replay mode: the preferred model's response if recorded, else the newest recording."""
+        if prefer_model and (hit := self.get(sha256, prefer_model)) is not None:
+            return hit
+        entries = [
+            json.loads(p.read_text(encoding="utf-8"))
+            for p in self.root.glob(f"{sha256}__*__{self.prompt_version}.json")
+        ]
+        if not entries:
             return None
-        return json.loads(matches[-1].read_text(encoding="utf-8"))
+        return max(entries, key=lambda e: e.get("created_utc", ""))
 
     def put(
         self,

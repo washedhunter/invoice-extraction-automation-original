@@ -57,6 +57,8 @@ def spend_frame(records: list[InvoiceRecord]) -> pd.DataFrame:
         d = inv.parsed_date()
         if d is None or DUPLICATE_CODES & set(r.flag_codes):
             continue
+        if (inv.currency or "INR").upper() != "INR":
+            continue  # the summary is in INR; other currencies are listed by non_inr_files()
         rows.append(
             {
                 "vendor": labels[r.file_name],
@@ -66,6 +68,14 @@ def spend_frame(records: list[InvoiceRecord]) -> pd.DataFrame:
             }
         )
     return pd.DataFrame(rows, columns=["vendor", "category", "month", "total"])
+
+
+def non_inr_files(records: list[InvoiceRecord]) -> list[str]:
+    return [
+        r.file_name
+        for r in records
+        if r.extracted is not None and (r.extracted.currency or "INR").upper() != "INR"
+    ]
 
 
 def pivot(df: pd.DataFrame, by: str) -> pd.DataFrame:

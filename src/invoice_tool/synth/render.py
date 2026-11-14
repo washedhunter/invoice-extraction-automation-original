@@ -44,7 +44,7 @@ class Line:
 class DocData:
     doc_type: str  # "invoice" | "receipt"
     vendor: Party
-    vendor_gstin: str  # as printed
+    vendor_gstin: str | None  # as printed (None: not printed)
     buyer: Party | None
     number: str | None
     issued: datetime
@@ -504,7 +504,10 @@ def render_receipt(d: DocData, path: Path) -> None:
     while addr:
         out.append(addr[:width].center(width))
         addr = addr[width:]
-    out += [f"GSTIN: {d.vendor_gstin}".center(width), "TAX INVOICE".center(width), "-" * width]
+    if d.vendor_gstin:
+        out.append(f"GSTIN: {d.vendor_gstin}".center(width))
+    taxed = any(t is not None for t in (d.cgst, d.sgst, d.igst))
+    out += [("TAX INVOICE" if taxed else "CASH MEMO").center(width), "-" * width]
     if d.number:
         out.append(f"Bill No: {d.number}")
     out.append(f"Date: {d.issued.strftime('%d/%m/%y %H:%M')}")

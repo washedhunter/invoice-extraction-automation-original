@@ -33,6 +33,7 @@ class RunResult:
     live_calls: int = 0
     cache_hits: int = 0
     models: set[str] = field(default_factory=set)
+    missing_recordings: list[str] = field(default_factory=list)  # replay mode only
 
     @property
     def quota_reached(self) -> bool:
@@ -71,14 +72,19 @@ def run(
     for i, path in enumerate(files, 1):
         data = path.read_bytes()
         sha = hashlib.sha256(data).hexdigest()
-        entry = cache.get_any_model(sha) if replay else cache.get(sha, model)
+        entry = cache.get_any_model(sha, prefer_model=model) if replay else cache.get(sha, model)
         if entry is not None:
             invoice = ExtractedInvoice.model_validate(entry["extracted"])
+            if invoice.category not in settings.categories:  # category list changed since recording
+                invoice.category = (
+                    "Other" if "Other" in settings.categories else settings.categories[-1]
+                )
             result.cache_hits += 1
             result.models.add(entry["model"])
             log(f"[{i}/{len(files)}] {path.name}: cached ({entry['model']})")
         elif replay:
             result.records.append(_failed(path.name, sha, "no recorded response for this file"))
+            result.missing_recordings.append(path.name)
             log(f"[{i}/{len(files)}] {path.name}: no recorded response")
             continue
         elif quota_hit or extractor is None:
@@ -119,6 +125,7 @@ def write_json(result: RunResult, path: Path, input_dir: Path) -> Path:
         "live_calls": result.live_calls,
         "cache_hits": result.cache_hits,
         "pending": result.pending,
+        "missing_recordings": result.missing_recordings,
         "records": [r.model_dump(mode="json") for r in result.records],
     }
     path.write_text(

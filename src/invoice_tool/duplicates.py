@@ -32,12 +32,16 @@ def _norm_text(s: str | None) -> str | None:
     return re.sub(r"[^a-z0-9]", "", s.lower()) or None
 
 
-def _vendor_key(r: InvoiceRecord) -> str | None:
-    inv = r.extracted
-    if inv is None:
-        return None
-    g = gstin.normalise(inv.vendor_gstin)
-    return g or _norm_text(inv.vendor_name)
+def _same_vendor(a: InvoiceRecord, b: InvoiceRecord) -> bool:
+    """Compare GSTINs when both documents have one; otherwise compare normalised names."""
+    ia, ib = a.extracted, b.extracted
+    if ia is None or ib is None:
+        return False
+    ga, gb = gstin.normalise(ia.vendor_gstin), gstin.normalise(ib.vendor_gstin)
+    if ga and gb:
+        return ga == gb
+    na, nb = _norm_text(ia.vendor_name), _norm_text(ib.vendor_name)
+    return bool(na) and na == nb
 
 
 def _sort_key(r: InvoiceRecord) -> tuple[date, str]:
@@ -77,11 +81,9 @@ def _match(a: InvoiceRecord, b: InvoiceRecord, near_days: int) -> tuple[str | No
             DUP_INVOICE_NO,
             f"Same GSTIN {ga} and invoice no. {ib.invoice_number} as {a.file_name}",
         )
-    va, vb = _vendor_key(a), _vendor_key(b)
     da, db = ia.parsed_date(), ib.parsed_date()
     if (
-        va
-        and va == vb
+        _same_vendor(a, b)
         and ia.total is not None
         and ib.total is not None
         and abs(ia.total - ib.total) < 0.005

@@ -29,7 +29,7 @@ class Settings(BaseModel):
     amount_tolerance: float = 1.0
     near_duplicate_days: int = 7
     cache_dir: Path = Path(".cache/extractions")
-    max_retries: int = 6
+    max_attempts: int = 4
     initial_backoff_seconds: float = 4.0
     max_backoff_seconds: float = 90.0
     request_timeout_seconds: float = 120.0

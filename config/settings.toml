@@ -15,8 +15,8 @@ near_duplicate_days = 7
 # Where extraction results are cached (keyed by file SHA-256 + model + prompt version).
 cache_dir = ".cache/extractions"
 
-# Retries for rate limits (429) and transient server errors (5xx).
-max_retries = 4
+# Attempts per document (first try + retries) for rate limits (429), timeouts and 5xx errors.
+max_attempts = 4
 initial_backoff_seconds = 4.0
 max_backoff_seconds = 90.0
 request_timeout_seconds = 120.0

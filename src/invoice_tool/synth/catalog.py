@@ -39,10 +39,11 @@ class Party:
     category: str = "Other"
     number_prefix: str = "INV-"
     items: tuple[Item, ...] = ()
+    registered: bool = True  # unregistered small shops print no GSTIN and charge no GST
 
     @property
-    def gstin(self) -> str:
-        return make_gstin(self.state, self.pan)
+    def gstin(self) -> str | None:
+        return make_gstin(self.state, self.pan) if self.registered else None
 
 
 BUYER = Party(
@@ -218,6 +219,21 @@ VENDORS: dict[str, Party] = {
                 Item("Croissant", None, 5, 5, 120, 160, 4),
                 Item("Chocolate Brownie", None, 5, 5, 140, 180, 3),
                 Item("Club Sandwich", None, 5, 5, 260, 320, 2),
+            ),
+        ),
+        Party(
+            key="kiosk",
+            name="Juhu Chai & Snacks Corner",
+            state="27",
+            state_name="Maharashtra",
+            pan="",
+            address="Stall 7, Juhu Tara Road, Mumbai 400049",
+            category="Meals & Entertainment",
+            registered=False,
+            items=(
+                Item("Cutting Chai", None, 0, 0, 15, 25, 6),
+                Item("Vada Pav", None, 0, 0, 20, 30, 4),
+                Item("Bun Maska", None, 0, 0, 30, 45, 3),
             ),
         ),
     ]

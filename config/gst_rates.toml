@@ -8,6 +8,9 @@
 # This is a slab-level check: it flags a rate that was not a GST slab on the invoice date.
 # It does not check whether the rate is the right one for a particular HSN/SAC code, and it does
 # not model item-specific transition exceptions.
+# Known gaps: some tobacco / pan masala lines reportedly stayed at 28% + compensation cess for a
+# while after 22 Sep 2025 and would be flagged here; dates before 1 July 2017 (pre-GST) are not
+# checked at all.
 
 [[periods]]
 name = "Pre GST 2.0"

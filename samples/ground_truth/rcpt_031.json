@@ -1,0 +1,51 @@
+{
+  "file": "rcpt_031.jpg",
+  "layout": "R",
+  "form": "receipt_jpg",
+  "scanned": true,
+  "planted": null,
+  "expected_flags": [],
+  "related_file": null,
+  "invoice": {
+    "document_type": "receipt",
+    "vendor_name": "Juhu Chai & Snacks Corner",
+    "vendor_gstin": null,
+    "buyer_gstin": null,
+    "invoice_number": null,
+    "invoice_date": "2026-08-14",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Bun Maska",
+        "hsn_sac": null,
+        "quantity": 2.0,
+        "unit_price": 45.0,
+        "amount": 90.0,
+        "gst_rate": null
+      },
+      {
+        "description": "Cutting Chai",
+        "hsn_sac": null,
+        "quantity": 5.0,
+        "unit_price": 20.0,
+        "amount": 100.0,
+        "gst_rate": null
+      },
+      {
+        "description": "Vada Pav",
+        "hsn_sac": null,
+        "quantity": 2.0,
+        "unit_price": 25.0,
+        "amount": 50.0,
+        "gst_rate": null
+      }
+    ],
+    "subtotal": 240.0,
+    "cgst": null,
+    "sgst": null,
+    "igst": null,
+    "round_off": 0.0,
+    "total": 240.0,
+    "category": "Meals & Entertainment"
+  }
+}

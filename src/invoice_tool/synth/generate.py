@@ -101,6 +101,8 @@ PLAN: list[Spec] = [
     Spec(28, "stationery", "B", "pdf", D(2025, 9, 15), 3, dup_of=9, dup_kind="reissue"),
     Spec(29, "cloud", "A", "pdf", D(2026, 1, 25), 1, dup_of=18, dup_kind="near"),
     Spec(30, "legal", "D", "pdf", D(2025, 7, 25), 2, dup_of=5, dup_kind="exact"),
+    # unregistered shop: cash memo with no GSTIN, no bill number and no GST (added after review)
+    Spec(31, "kiosk", "R", "receipt_jpg", D(2026, 8, 14), 3),
 ]
 
 DUP_CODES = {
@@ -162,7 +164,9 @@ def build(spec: Spec, rng: random.Random) -> DocData:
     subtotal = sum(r2(ln.amount) for ln in lines)
     tax = sum(r2(ln.amount) * Decimal(str(ln.rate)) / 100 for ln in lines)
     cgst = sgst = igst = None
-    if intra:
+    if not v.registered:
+        pass  # no GST charged
+    elif intra:
         cgst = sgst = r2(tax / 2)
     else:
         igst = r2(tax)
@@ -187,7 +191,11 @@ def build(spec: Spec, rng: random.Random) -> DocData:
         vendor=v,
         vendor_gstin=gstin,
         buyer=None if receipt else BUYER,
-        number=None if spec.plant == "missing_number" else _number(v, spec.day, rng),
+        number=(
+            None
+            if spec.plant == "missing_number" or not v.registered
+            else _number(v, spec.day, rng)
+        ),
         issued=issued,
         lines=lines,
         subtotal=float(printed_subtotal),
@@ -217,7 +225,7 @@ def to_truth(d: DocData) -> ExtractedInvoice:
                 quantity=ln.qty,
                 unit_price=ln.unit_price,
                 amount=ln.amount,
-                gst_rate=ln.rate,
+                gst_rate=ln.rate if d.vendor.registered else None,  # no rate printed
             )
             for ln in d.lines
         ],

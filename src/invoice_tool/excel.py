@@ -18,12 +18,12 @@ from openpyxl.worksheet.worksheet import Worksheet
 from invoice_tool.duplicates import DUP_DESCRIPTIONS
 from invoice_tool.rules import REASON_DESCRIPTIONS
 from invoice_tool.schema import InvoiceRecord
-from invoice_tool.summary import monthly_summaries
+from invoice_tool.summary import monthly_summaries, non_inr_files
 
 MONEY = '"₹"#,##0.00'
 MONEY_HIDE_ZERO = '"₹"#,##0.00;-"₹"#,##0.00;""'  # blank cells instead of ₹0.00
 DATE = "dd-mmm-yyyy"
-PCT = '0.##"%"'
+PCT = 'General"%"'  # 18 -> 18%, 2.5 -> 2.5%
 HEADER_FILL = PatternFill("solid", fgColor="1F4E79")
 HEADER_FONT = Font(bold=True, color="FFFFFF")
 REVIEW_FILL = PatternFill(bgColor="F8D7DA")  # conditional formats use bgColor
@@ -124,7 +124,7 @@ def _line_items_sheet(ws: Worksheet, records: list[InvoiceRecord]) -> None:
         ("#", 5, "0"),
         ("Description", 46, None),
         ("HSN/SAC", 10, None),
-        ("Qty", 7, "0.##"),
+        ("Qty", 7, "General"),
         ("Unit Price", 13, MONEY),
         ("Amount", 14, MONEY),
         ("GST %", 8, PCT),
@@ -214,7 +214,10 @@ def _pivot_block(ws: Worksheet, table: pd.DataFrame, top: int, title: str) -> tu
 
 def _summary_sheet(ws: Worksheet, records: list[InvoiceRecord]) -> None:
     by_vendor, by_category = monthly_summaries(records)
-    ws["A1"] = "Monthly spending summary (INR). Duplicates and unreadable documents are excluded."
+    note = "Monthly spending summary (INR). Duplicates and unreadable documents are excluded."
+    if others := non_inr_files(records):
+        note += f" Not in INR, excluded: {', '.join(others)}."
+    ws["A1"] = note
     ws["A1"].font = Font(italic=True)
     ws.column_dimensions["A"].width = 34
     if by_vendor.empty:

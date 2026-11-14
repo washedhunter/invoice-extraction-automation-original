@@ -37,6 +37,8 @@ NUMERIC = {"subtotal", "cgst", "sgst", "igst", "round_off", "total"}
 ZERO_IS_NULL = {"cgst", "sgst", "igst", "round_off"}
 LINE_FIELDS = ["description", "hsn_sac", "quantity", "unit_price", "amount", "gst_rate"]
 LINE_NUMERIC = {"quantity", "unit_price", "amount", "gst_rate"}
+# "no GST printed" and "0% GST" mean the same thing for a tax or a line rate
+ZERO_IS_NULL_LINE = {"gst_rate"}
 
 
 def _norm_str(field_name: str, v: Any) -> str | None:
@@ -52,7 +54,7 @@ def _norm_str(field_name: str, v: Any) -> str | None:
 
 def field_equal(name: str, truth: Any, pred: Any, numeric: bool) -> bool:
     if numeric:
-        if name in ZERO_IS_NULL:
+        if name in ZERO_IS_NULL or name in ZERO_IS_NULL_LINE:
             truth, pred = truth or 0.0, pred or 0.0
         if truth is None or pred is None:
             return truth is None and pred is None
@@ -233,15 +235,26 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--results", type=Path, required=True, help="JSON written by --json-out")
     ap.add_argument("--truth", type=Path, default=Path("samples/ground_truth"))
     ap.add_argument("--report", type=Path, help="also write the markdown report here")
+    ap.add_argument(
+        "--strict",
+        action="store_true",
+        help="exit 1 if any planted error is missed, any false alarm, or any file failed/pending",
+    )
     args = ap.parse_args(argv)
     results = json.loads(args.results.read_text(encoding="utf-8"))
-    md = to_markdown(evaluate(results, args.truth))
+    rep = evaluate(results, args.truth)
+    md = to_markdown(rep)
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(md, encoding="utf-8", newline="\n")
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")  # Windows consoles default to cp1252 (no ₹)
     print(md)
+    if args.strict and (rep.misses or rep.false_alarms or rep.failed or rep.pending):
+        print(
+            "STRICT: evaluation found misses, false alarms, or unprocessed files", file=sys.stderr
+        )
+        sys.exit(1)
 
 
 if __name__ == "__main__":

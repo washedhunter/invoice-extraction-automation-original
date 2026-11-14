@@ -33,7 +33,11 @@ class LineItem(BaseModel):
 
 class ExtractedInvoice(BaseModel):
     document_type: Literal["invoice", "receipt"] = Field(
-        description="'invoice' for a tax invoice; 'receipt' for a shop/restaurant bill or cash memo"
+        description=(
+            "'receipt' for a point-of-sale bill (thermal/till slip, cash memo, restaurant, cafe, "
+            "cab or shop bill), even if headed 'TAX INVOICE'; 'invoice' for a full-page business "
+            "invoice with a billed-to party"
+        )
     )
     vendor_name: str | None = Field(default=None, description="Seller / supplier name.")
     vendor_gstin: str | None = Field(

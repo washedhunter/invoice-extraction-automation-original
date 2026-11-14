@@ -87,6 +87,29 @@ def test_strongest_match_wins(clean_invoice):
     assert dup_flags([a, b, c])["c.pdf"] == [(DUP_EXACT, "b.pdf")]
 
 
+def test_near_duplicate_when_one_document_lacks_a_gstin(clean_invoice):
+    a = rec("a.pdf", "h1", clean_invoice)
+    b = rec(
+        "b.pdf",
+        "h2",
+        clean_invoice.model_copy(
+            update={"vendor_gstin": None, "invoice_number": "R-9", "invoice_date": "2026-03-12"}
+        ),
+    )
+    find_duplicates([a, b], near_days=7)
+    assert dup_flags([a, b])["b.pdf"] == [(DUP_NEAR, "a.pdf")]
+
+
+def test_different_gstins_are_different_vendors(clean_invoice):
+    from tests.conftest import SELLER_KA
+
+    a = rec("a.pdf", "h1", clean_invoice)
+    other = clean_invoice.model_copy(update={"vendor_gstin": SELLER_KA, "invoice_number": "Z-1"})
+    b = rec("b.pdf", "h2", other)
+    find_duplicates([a, b], near_days=7)
+    assert dup_flags([a, b])["b.pdf"] == []
+
+
 def test_failed_extraction_only_matches_exact(clean_invoice):
     a = InvoiceRecord(file_name="a.pdf", file_sha256="h1", error="boom")
     b = InvoiceRecord(file_name="b.pdf", file_sha256="h1", error="boom")
