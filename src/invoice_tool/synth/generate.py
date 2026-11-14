@@ -298,7 +298,7 @@ def generate(out: Path, seed: int = 7, clean: bool = False) -> list[dict]:
             "invoice": to_truth(data).model_dump(mode="json"),
         }
         (truth_dir / f"{Path(spec.file_name).stem}.json").write_text(
-            json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+            json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"
         )
         manifest.append(record)
     return manifest
