@@ -16,8 +16,8 @@
     "currency": "INR",
     "line_items": [
       {
-        "description": "Local Hire 8 hrs / 80 km - Sedan",
-        "hsn_sac": "996412",
+        "description": "Local Hire 8 hrs / 8",
+        "hsn_sac": null,
         "quantity": 1.0,
         "unit_price": 2270.0,
         "amount": 2270.0,

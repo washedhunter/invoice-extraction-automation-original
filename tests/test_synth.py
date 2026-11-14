@@ -81,5 +81,12 @@ def test_ground_truth_is_deterministic(generated, tmp_path):
         assert p.read_bytes() == (tmp_path / p.name).read_bytes()
 
 
+def test_receipt_truth_matches_what_is_printed(generated):
+    for p in (generated / "ground_truth").glob("rcpt_*.json"):
+        t = json.loads(p.read_text(encoding="utf-8"))
+        for li in t["invoice"]["line_items"]:
+            assert len(li["description"]) <= 20 and li["hsn_sac"] is None
+
+
 def test_exact_duplicate_is_byte_identical(generated):
     assert (generated / "inv_030.pdf").read_bytes() == (generated / "inv_005.pdf").read_bytes()

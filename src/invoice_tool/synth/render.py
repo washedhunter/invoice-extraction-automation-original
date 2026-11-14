@@ -26,6 +26,8 @@ from invoice_tool.synth.catalog import Party
 rl_config.invariant = 1  # byte-identical PDFs for identical input (stable file hashes)
 
 FOOTER = "SYNTHETIC TEST DOCUMENT - generated for software testing, not a real invoice."
+# Receipts print item names cut to this width and no HSN/SAC column; ground truth must match.
+RECEIPT_DESC_WIDTH = 20
 
 
 @dataclass
@@ -509,7 +511,8 @@ def render_receipt(d: DocData, path: Path) -> None:
     out += ["-" * width, f"{'Item':<20}{'Qty':>4}{'Rate':>8}{'Amt':>10}", "-" * width]
     for ln in d.lines:
         out.append(
-            f"{ln.description[:20]:<20}{qty_str(ln.qty):>4}{fmt(ln.unit_price):>8}{fmt(ln.amount):>10}"
+            f"{ln.description[:RECEIPT_DESC_WIDTH]:<20}{qty_str(ln.qty):>4}"
+            f"{fmt(ln.unit_price):>8}{fmt(ln.amount):>10}"
         )
     out.append("-" * width)
     rate = d.lines[0].rate if d.lines else 0

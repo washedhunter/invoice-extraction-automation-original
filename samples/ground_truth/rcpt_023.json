@@ -16,8 +16,8 @@
     "currency": "INR",
     "line_items": [
       {
-        "description": "Airport Transfer - Sedan",
-        "hsn_sac": "996412",
+        "description": "Airport Transfer - S",
+        "hsn_sac": null,
         "quantity": 1.0,
         "unit_price": 1000.0,
         "amount": 1000.0,

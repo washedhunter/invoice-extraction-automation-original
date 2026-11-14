@@ -24,7 +24,7 @@ from invoice_tool import duplicates, rules
 from invoice_tool.schema import ExtractedInvoice, LineItem
 from invoice_tool.synth import scan
 from invoice_tool.synth.catalog import BUYER, VENDORS, Item, Party
-from invoice_tool.synth.render import DocData, Line, render
+from invoice_tool.synth.render import RECEIPT_DESC_WIDTH, DocData, Line, render
 
 GST2_START = date(2025, 9, 22)
 
@@ -200,6 +200,8 @@ def build(spec: Spec, rng: random.Random) -> DocData:
 
 
 def to_truth(d: DocData) -> ExtractedInvoice:
+    """Ground truth = what is printed on the document."""
+    receipt = d.doc_type == "receipt"
     return ExtractedInvoice(
         document_type=d.doc_type,
         vendor_name=d.vendor.name,
@@ -210,8 +212,8 @@ def to_truth(d: DocData) -> ExtractedInvoice:
         currency="INR",
         line_items=[
             LineItem(
-                description=ln.description,
-                hsn_sac=ln.code,
+                description=ln.description[:RECEIPT_DESC_WIDTH] if receipt else ln.description,
+                hsn_sac=None if receipt else ln.code,
                 quantity=ln.qty,
                 unit_price=ln.unit_price,
                 amount=ln.amount,
