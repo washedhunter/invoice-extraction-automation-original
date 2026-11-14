@@ -1,0 +1,42 @@
+{
+  "sha256": "57d5f4096c4a4f8b133e709e63506c5f3a18fd756cec98f493018f1c25d89e14",
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "v1",
+  "source_file": "inv_005.pdf",
+  "created_utc": "2026-11-14T01:42:00+00:00",
+  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Indus Legal & Tax Advisors\",\n  \"vendor_gstin\": \"07AACFI3378N1ZY\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"ILTA/2025/1560\",\n  \"invoice_date\": \"2025-07-25\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Contract Review (per hour)\",\n      \"hsn_sac\": \"998212\",\n      \"quantity\": 2,\n      \"unit_price\": 3940.00,\n      \"amount\": 7880.00,\n      \"gst_rate\": 18\n    },\n    {\n      \"description\": \"Company Secretarial Compliance - Annual\",\n      \"hsn_sac\": \"998222\",\n      \"quantity\": 1,\n      \"unit_price\": 39000.00,\n      \"amount\": 39000.00,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 46880.00,\n  \"cgst\": null,\n  \"sgst\": null,\n  \"igst\": 8438.40,\n  \"round_off\": -0.40,\n  \"total\": 55318.00,\n  \"category\": \"Professional Services\"\n}",
+  "extracted": {
+    "document_type": "invoice",
+    "vendor_name": "Indus Legal & Tax Advisors",
+    "vendor_gstin": "07AACFI3378N1ZY",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "ILTA/2025/1560",
+    "invoice_date": "2025-07-25",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Contract Review (per hour)",
+        "hsn_sac": "998212",
+        "quantity": 2.0,
+        "unit_price": 3940.0,
+        "amount": 7880.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "Company Secretarial Compliance - Annual",
+        "hsn_sac": "998222",
+        "quantity": 1.0,
+        "unit_price": 39000.0,
+        "amount": 39000.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 46880.0,
+    "cgst": null,
+    "sgst": null,
+    "igst": 8438.4,
+    "round_off": -0.4,
+    "total": 55318.0,
+    "category": "Professional Services"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "sha256": "27ddc0b19c22d7780ce79c4fc0c19d269da1e08c6f2c5be7fe0b9ee9ab1c8d03",
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "v1",
+  "source_file": "inv_001.pdf",
+  "created_utc": "2026-11-14T01:41:53+00:00",
+  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Sahyadri Stationery Mart\",\n  \"vendor_gstin\": \"27AAKFS4821M1ZQ\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"SSM/25-26/4004\",\n  \"invoice_date\": \"2025-06-05\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Ball Pen Blue (Box of 10)\",\n      \"hsn_sac\": \"9608\",\n      \"quantity\": 9,\n      \"unit_price\": 110.00,\n      \"amount\": 990.00,\n      \"gst_rate\": 18\n    },\n    {\n      \"description\": \"Toner Cartridge 88A Compatible\",\n      \"hsn_sac\": \"8443\",\n      \"quantity\": 2,\n      \"unit_price\": 1090.00,\n      \"amount\": 2180.00,\n      \"gst_rate\": 18\n    },\n    {\n      \"description\": \"A4 Copier Paper 75 GSM (500 sheets)\",\n      \"hsn_sac\": \"4802\",\n      \"quantity\": 20,\n      \"unit_price\": 270.00,\n      \"amount\": 5400.00,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 8570.00,\n  \"cgst\": 771.30,\n  \"sgst\": 771.30,\n  \"igst\": null,\n  \"round_off\": 0.40,\n  \"total\": 10113.00,\n  \"category\": \"Office Supplies\"\n}",
+  "extracted": {
+    "document_type": "invoice",
+    "vendor_name": "Sahyadri Stationery Mart",
+    "vendor_gstin": "27AAKFS4821M1ZQ",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "SSM/25-26/4004",
+    "invoice_date": "2025-06-05",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Ball Pen Blue (Box of 10)",
+        "hsn_sac": "9608",
+        "quantity": 9.0,
+        "unit_price": 110.0,
+        "amount": 990.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "Toner Cartridge 88A Compatible",
+        "hsn_sac": "8443",
+        "quantity": 2.0,
+        "unit_price": 1090.0,
+        "amount": 2180.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "A4 Copier Paper 75 GSM (500 sheets)",
+        "hsn_sac": "4802",
+        "quantity": 20.0,
+        "unit_price": 270.0,
+        "amount": 5400.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 8570.0,
+    "cgst": 771.3,
+    "sgst": 771.3,
+    "igst": null,
+    "round_off": 0.4,
+    "total": 10113.0,
+    "category": "Office Supplies"
+  }
+}

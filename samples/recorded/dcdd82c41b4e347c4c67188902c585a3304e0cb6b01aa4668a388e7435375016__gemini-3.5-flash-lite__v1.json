@@ -1,0 +1,42 @@
+{
+  "sha256": "dcdd82c41b4e347c4c67188902c585a3304e0cb6b01aa4668a388e7435375016",
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "v1",
+  "source_file": "scan_025.pdf",
+  "created_utc": "2026-11-14T01:43:37+00:00",
+  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"HOTEL WESTERN GHATS RESIDENCY\",\n  \"vendor_gstin\": \"27AAEFH9032K1Z6\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"HWG-26-0233\",\n  \"invoice_date\": \"2026-06-26\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Conference Hall Rental (half day)\",\n      \"hsn_sac\": \"997212\",\n      \"quantity\": 1.0,\n      \"unit_price\": 13600.0,\n      \"amount\": 13600.0,\n      \"gst_rate\": 18.0\n    },\n    {\n      \"description\": \"Deluxe Room (per night, tariff up to R s 7,500)\",\n      \"hsn_sac\": \"996311\",\n      \"quantity\": 3.0,\n      \"unit_price\": 4500.0,\n      \"amount\": 13500.0,\n      \"gst_rate\": 5.0\n    }\n  ],\n  \"subtotal\": 27100.0,\n  \"cgst\": 1561.5,\n  \"sgst\": 1561.5,\n  \"igst\": null,\n  \"round_off\": 0.0,\n  \"total\": 30223.0,\n  \"category\": \"Travel\"\n}",
+  "extracted": {
+    "document_type": "invoice",
+    "vendor_name": "HOTEL WESTERN GHATS RESIDENCY",
+    "vendor_gstin": "27AAEFH9032K1Z6",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "HWG-26-0233",
+    "invoice_date": "2026-06-26",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Conference Hall Rental (half day)",
+        "hsn_sac": "997212",
+        "quantity": 1.0,
+        "unit_price": 13600.0,
+        "amount": 13600.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "Deluxe Room (per night, tariff up to R s 7,500)",
+        "hsn_sac": "996311",
+        "quantity": 3.0,
+        "unit_price": 4500.0,
+        "amount": 13500.0,
+        "gst_rate": 5.0
+      }
+    ],
+    "subtotal": 27100.0,
+    "cgst": 1561.5,
+    "sgst": 1561.5,
+    "igst": null,
+    "round_off": 0.0,
+    "total": 30223.0,
+    "category": "Travel"
+  }
+}

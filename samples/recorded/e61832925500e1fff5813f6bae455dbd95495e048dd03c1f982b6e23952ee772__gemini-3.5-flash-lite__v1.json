@@ -1,0 +1,42 @@
+{
+  "sha256": "e61832925500e1fff5813f6bae455dbd95495e048dd03c1f982b6e23952ee772",
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "v1",
+  "source_file": "inv_022.pdf",
+  "created_utc": "2026-11-14T01:43:00+00:00",
+  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Konkan Cloud Systems LLP\",\n  \"vendor_gstin\": \"27AAOFK2290R1ZH\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"KCS-2026-2729\",\n  \"invoice_date\": \"2026-03-20\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Cloud Hosting - Standard Plan (monthly)\",\n      \"hsn_sac\": \"998315\",\n      \"quantity\": 1,\n      \"unit_price\": 4370.00,\n      \"amount\": 4370.00,\n      \"gst_rate\": 18\n    },\n    {\n      \"description\": \"On-site IT Support (per visit)\",\n      \"hsn_sac\": \"998713\",\n      \"quantity\": 3,\n      \"unit_price\": 1600.00,\n      \"amount\": 4800.00,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 9170.00,\n  \"cgst\": null,\n  \"sgst\": null,\n  \"igst\": 1650.60,\n  \"round_off\": 0.40,\n  \"total\": 10821.00,\n  \"category\": \"IT & Software\"\n}",
+  "extracted": {
+    "document_type": "invoice",
+    "vendor_name": "Konkan Cloud Systems LLP",
+    "vendor_gstin": "27AAOFK2290R1ZH",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "KCS-2026-2729",
+    "invoice_date": "2026-03-20",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Cloud Hosting - Standard Plan (monthly)",
+        "hsn_sac": "998315",
+        "quantity": 1.0,
+        "unit_price": 4370.0,
+        "amount": 4370.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "On-site IT Support (per visit)",
+        "hsn_sac": "998713",
+        "quantity": 3.0,
+        "unit_price": 1600.0,
+        "amount": 4800.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 9170.0,
+    "cgst": null,
+    "sgst": null,
+    "igst": 1650.6,
+    "round_off": 0.4,
+    "total": 10821.0,
+    "category": "IT & Software"
+  }
+}

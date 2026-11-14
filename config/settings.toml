@@ -1,7 +1,10 @@
 # invoice-tool settings. Every key can be overridden with an env var INVOICE_<KEY IN CAPS>.
 
 # Gemini model used for extraction. Check https://aistudio.google.com/docs/models before changing.
-model = "gemini-3.8-flash"
+# gemini-3.5-flash-lite (stable): its free tier covered the whole 30-document sample set in one day.
+# gemini-3.6-flash allows only 20 requests/day on the free tier; gemini-3.8-flash timed out on
+# every request from a free-tier key on 2026-11-14. See docs/DECISIONS.md.
+model = "gemini-3.5-flash-lite"
 
 # Allowed difference (in rupees) when cross-checking sums, totals and tax amounts.
 amount_tolerance = 1.0
@@ -13,9 +16,10 @@ near_duplicate_days = 7
 cache_dir = ".cache/extractions"
 
 # Retries for rate limits (429) and transient server errors (5xx).
-max_retries = 6
+max_retries = 4
 initial_backoff_seconds = 4.0
 max_backoff_seconds = 90.0
+request_timeout_seconds = 120.0
 
 # Fixed list of spending categories. Gemini must pick one of these.
 categories = [

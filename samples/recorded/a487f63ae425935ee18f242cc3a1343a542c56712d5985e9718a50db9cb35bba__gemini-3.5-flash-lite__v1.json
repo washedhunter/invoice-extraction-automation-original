@@ -1,0 +1,58 @@
+{
+  "sha256": "a487f63ae425935ee18f242cc3a1343a542c56712d5985e9718a50db9cb35bba",
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "v1",
+  "source_file": "scan_014.jpg",
+  "created_utc": "2026-11-14T01:43:25+00:00",
+  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Sahyadri Stationery Mart\",\n  \"vendor_gstin\": \"27AAKFS4821M1ZQ\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"SSM/25-26/7026\",\n  \"invoice_date\": \"2025-11-17\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Ball Pen Blue (Box of 10)\",\n      \"hsn_sac\": \"9608\",\n      \"quantity\": 10,\n      \"unit_price\": 135.0,\n      \"amount\": 1350.0,\n      \"gst_rate\": 18.0\n    },\n    {\n      \"description\": \"Box File Foolscap\",\n      \"hsn_sac\": \"4820\",\n      \"quantity\": 11,\n      \"unit_price\": 85.0,\n      \"amount\": 935.0,\n      \"gst_rate\": 18.0\n    },\n    {\n      \"description\": \"Toner Cartridge 88A Compatible\",\n      \"hsn_sac\": \"8443\",\n      \"quantity\": 1,\n      \"unit_price\": 960.0,\n      \"amount\": 960.0,\n      \"gst_rate\": 18.0\n    },\n    {\n      \"description\": \"Whiteboard Marker Set (4 colours)\",\n      \"hsn_sac\": \"9608\",\n      \"quantity\": 3,\n      \"unit_price\": 140.0,\n      \"amount\": 420.0,\n      \"gst_rate\": 18.0\n    }\n  ],\n  \"subtotal\": 3665.0,\n  \"cgst\": 329.85,\n  \"sgst\": 329.85,\n  \"igst\": null,\n  \"round_off\": 0.3,\n  \"total\": 4325.0,\n  \"category\": \"Office Supplies\"\n}",
+  "extracted": {
+    "document_type": "invoice",
+    "vendor_name": "Sahyadri Stationery Mart",
+    "vendor_gstin": "27AAKFS4821M1ZQ",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "SSM/25-26/7026",
+    "invoice_date": "2025-11-17",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Ball Pen Blue (Box of 10)",
+        "hsn_sac": "9608",
+        "quantity": 10.0,
+        "unit_price": 135.0,
+        "amount": 1350.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "Box File Foolscap",
+        "hsn_sac": "4820",
+        "quantity": 11.0,
+        "unit_price": 85.0,
+        "amount": 935.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "Toner Cartridge 88A Compatible",
+        "hsn_sac": "8443",
+        "quantity": 1.0,
+        "unit_price": 960.0,
+        "amount": 960.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "Whiteboard Marker Set (4 colours)",
+        "hsn_sac": "9608",
+        "quantity": 3.0,
+        "unit_price": 140.0,
+        "amount": 420.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 3665.0,
+    "cgst": 329.85,
+    "sgst": 329.85,
+    "igst": null,
+    "round_off": 0.3,
+    "total": 4325.0,
+    "category": "Office Supplies"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "sha256": "1372395e39006b6945fd396ac23e94272b35b10962439e251f37c325180fa77a",
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "v1",
+  "source_file": "rcpt_026.png",
+  "created_utc": "2026-11-14T01:43:19+00:00",
+  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"MARINE DRIVE BISTRO\",\n  \"vendor_gstin\": \"27AAQFM6403C1ZG\",\n  \"buyer_gstin\": null,\n  \"invoice_number\": \"B-05853\",\n  \"invoice_date\": \"2026-07-31\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Veg Biryani\",\n      \"hsn_sac\": null,\n      \"quantity\": 2,\n      \"unit_price\": 290.0,\n      \"amount\": 580.0,\n      \"gst_rate\": 5.0\n    },\n    {\n      \"description\": \"Fresh Lime Soda\",\n      \"hsn_sac\": null,\n      \"quantity\": 4,\n      \"unit_price\": 135.0,\n      \"amount\": 540.0,\n      \"gst_rate\": 5.0\n    },\n    {\n      \"description\": \"Filter Coffee\",\n      \"hsn_sac\": null,\n      \"quantity\": 3,\n      \"unit_price\": 85.0,\n      \"amount\": 255.0,\n      \"gst_rate\": 5.0\n    }\n  ],\n  \"subtotal\": 1375.0,\n  \"cgst\": 34.38,\n  \"sgst\": 34.38,\n  \"igst\": null,\n  \"round_off\": 0.24,\n  \"total\": 1444.0,\n  \"category\": \"Meals & Entertainment\"\n}",
+  "extracted": {
+    "document_type": "invoice",
+    "vendor_name": "MARINE DRIVE BISTRO",
+    "vendor_gstin": "27AAQFM6403C1ZG",
+    "buyer_gstin": null,
+    "invoice_number": "B-05853",
+    "invoice_date": "2026-07-31",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Veg Biryani",
+        "hsn_sac": null,
+        "quantity": 2.0,
+        "unit_price": 290.0,
+        "amount": 580.0,
+        "gst_rate": 5.0
+      },
+      {
+        "description": "Fresh Lime Soda",
+        "hsn_sac": null,
+        "quantity": 4.0,
+        "unit_price": 135.0,
+        "amount": 540.0,
+        "gst_rate": 5.0
+      },
+      {
+        "description": "Filter Coffee",
+        "hsn_sac": null,
+        "quantity": 3.0,
+        "unit_price": 85.0,
+        "amount": 255.0,
+        "gst_rate": 5.0
+      }
+    ],
+    "subtotal": 1375.0,
+    "cgst": 34.38,
+    "sgst": 34.38,
+    "igst": null,
+    "round_off": 0.24,
+    "total": 1444.0,
+    "category": "Meals & Entertainment"
+  }
+}

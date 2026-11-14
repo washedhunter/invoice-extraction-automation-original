@@ -1,0 +1,42 @@
+{
+  "sha256": "cdba77bf86544c385c4a8d127791b707bc78f1a9d90e402d2dc061eaa13edb7e",
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "v1",
+  "source_file": "inv_003.pdf",
+  "created_utc": "2026-11-14T01:41:57+00:00",
+  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"DECCAN COOLING SOLUTIONS PVT LTD\",\n  \"vendor_gstin\": \"29AAGCD5517H1ZJ\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"DCS/INV/2507/5420\",\n  \"invoice_date\": \"2025-07-02\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Split AC 1.5 Ton 3-Star Inverter\",\n      \"hsn_sac\": \"8415\",\n      \"quantity\": 1.0,\n      \"unit_price\": 32700.0,\n      \"amount\": 32700.0,\n      \"gst_rate\": 28.0\n    },\n    {\n      \"description\": \"Copper Pipe Installation Kit\",\n      \"hsn_sac\": \"7411\",\n      \"quantity\": 1.0,\n      \"unit_price\": 2250.0,\n      \"amount\": 2250.0,\n      \"gst_rate\": 18.0\n    }\n  ],\n  \"subtotal\": 34950.0,\n  \"cgst\": null,\n  \"sgst\": null,\n  \"igst\": 9561.0,\n  \"round_off\": 0.0,\n  \"total\": 44511.0,\n  \"category\": \"Office Supplies\"\n}",
+  "extracted": {
+    "document_type": "invoice",
+    "vendor_name": "DECCAN COOLING SOLUTIONS PVT LTD",
+    "vendor_gstin": "29AAGCD5517H1ZJ",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "DCS/INV/2507/5420",
+    "invoice_date": "2025-07-02",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Split AC 1.5 Ton 3-Star Inverter",
+        "hsn_sac": "8415",
+        "quantity": 1.0,
+        "unit_price": 32700.0,
+        "amount": 32700.0,
+        "gst_rate": 28.0
+      },
+      {
+        "description": "Copper Pipe Installation Kit",
+        "hsn_sac": "7411",
+        "quantity": 1.0,
+        "unit_price": 2250.0,
+        "amount": 2250.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 34950.0,
+    "cgst": null,
+    "sgst": null,
+    "igst": 9561.0,
+    "round_off": 0.0,
+    "total": 44511.0,
+    "category": "Office Supplies"
+  }
+}

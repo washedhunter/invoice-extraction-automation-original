@@ -1,0 +1,34 @@
+{
+  "sha256": "3373d6cbc28d097289b1baf9380138fb231e8cd300f494d0ac43711778b85ec6",
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "v1",
+  "source_file": "inv_029.pdf",
+  "created_utc": "2026-11-14T01:43:08+00:00",
+  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Konkan Cloud Systems LLP\",\n  \"vendor_gstin\": \"27AAOFK2290R1ZH\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"KCS-2026-3903\",\n  \"invoice_date\": \"2026-01-25\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Laptop 14in i5 16GB 512GB SSD\",\n      \"hsn_sac\": \"8471\",\n      \"quantity\": 2,\n      \"unit_price\": 59600.00,\n      \"amount\": 119200.00,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 119200.00,\n  \"cgst\": 10728.00,\n  \"sgst\": 10728.00,\n  \"igst\": null,\n  \"round_off\": 0.00,\n  \"total\": 140656.00,\n  \"category\": \"IT & Software\"\n}",
+  "extracted": {
+    "document_type": "invoice",
+    "vendor_name": "Konkan Cloud Systems LLP",
+    "vendor_gstin": "27AAOFK2290R1ZH",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "KCS-2026-3903",
+    "invoice_date": "2026-01-25",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Laptop 14in i5 16GB 512GB SSD",
+        "hsn_sac": "8471",
+        "quantity": 2.0,
+        "unit_price": 59600.0,
+        "amount": 119200.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 119200.0,
+    "cgst": 10728.0,
+    "sgst": 10728.0,
+    "igst": null,
+    "round_off": 0.0,
+    "total": 140656.0,
+    "category": "IT & Software"
+  }
+}
