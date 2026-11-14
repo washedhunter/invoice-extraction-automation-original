@@ -1,9 +1,9 @@
 {
   "sha256": "394e38bc22c758338824b81206bf9e2e55c082aca5adc30004ab286ae2be8279",
   "model": "gemini-3.5-flash-lite",
-  "prompt_version": "v1",
+  "prompt_version": "v2-372a1d54",
   "source_file": "inv_015.pdf",
-  "created_utc": "2026-11-14T01:42:13+00:00",
+  "created_utc": "2026-11-14T02:00:40+00:00",
   "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Deccan Cooling Solutions Pvt Ltd\",\n  \"vendor_gstin\": \"29AAGCD5517H1ZJ\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"DCS/INV/2512/4628\",\n  \"invoice_date\": \"2025-12-02\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Split AC 1.5 Ton 3-Star Inverter\",\n      \"hsn_sac\": \"8415\",\n      \"quantity\": 1,\n      \"unit_price\": 32000.0,\n      \"amount\": 32000.0,\n      \"gst_rate\": 28\n    },\n    {\n      \"description\": \"Copper Pipe Installation Kit\",\n      \"hsn_sac\": \"7411\",\n      \"quantity\": 2,\n      \"unit_price\": 2290.0,\n      \"amount\": 4580.0,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 36580.0,\n  \"cgst\": null,\n  \"sgst\": null,\n  \"igst\": 9784.4,\n  \"round_off\": -0.4,\n  \"total\": 46364.0,\n  \"category\": \"Repairs & Maintenance\"\n}",
   "extracted": {
     "document_type": "invoice",

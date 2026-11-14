@@ -1,10 +1,10 @@
 {
   "sha256": "45a55377e89fce8f9c64c6e91f5cd20a5ee947209f27236d304a9bf3d97f1473",
   "model": "gemini-3.5-flash-lite",
-  "prompt_version": "v1",
+  "prompt_version": "v2-372a1d54",
   "source_file": "inv_019.pdf",
-  "created_utc": "2026-11-14T01:42:19+00:00",
-  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Gujarat Office Furniture Works\",\n  \"vendor_gstin\": \"24AAHFG8124P1Z1\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"GOFW/25-26/8538\",\n  \"invoice_date\": \"2026-02-05\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Workstation Desk 1200x600\",\n      \"hsn_sac\": \"9403\",\n      \"quantity\": 2,\n      \"unit_price\": 12500.0,\n      \"amount\": 25000.0,\n      \"gst_rate\": 18.0\n    },\n    {\n      \"description\": \"Steel Storage Cabinet 4-Door\",\n      \"hsn_sac\": \"9403\",\n      \"quantity\": 1,\n      \"unit_price\": 13400.0,\n      \"amount\": 13400.0,\n      \"gst_rate\": 18.0\n    }\n  ],\n  \"subtotal\": 38400.0,\n  \"cgst\": null,\n  \"sgst\": null,\n  \"igst\": 6912.0,\n  \"round_off\": 0.0,\n  \"total\": 45312.0,\n  \"category\": \"Office Supplies\"\n}",
+  "created_utc": "2026-11-14T02:00:45+00:00",
+  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Gujarat Office Furniture Works\",\n  \"vendor_gstin\": \"24AAHFG8124P1Z1\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"GOFW/25-26/8538\",\n  \"invoice_date\": \"2026-02-05\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Workstation Desk 1200x600\",\n      \"hsn_sac\": \"9403\",\n      \"quantity\": 2,\n      \"unit_price\": 12500.00,\n      \"amount\": 25000.00,\n      \"gst_rate\": 18\n    },\n    {\n      \"description\": \"Steel Storage Cabinet 4-Door\",\n      \"hsn_sac\": \"9403\",\n      \"quantity\": 1,\n      \"unit_price\": 13400.00,\n      \"amount\": 13400.00,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 38400.00,\n  \"cgst\": null,\n  \"sgst\": null,\n  \"igst\": 6912.00,\n  \"round_off\": 0.00,\n  \"total\": 45312.00,\n  \"category\": \"Office Supplies\"\n}",
   "extracted": {
     "document_type": "invoice",
     "vendor_name": "Gujarat Office Furniture Works",

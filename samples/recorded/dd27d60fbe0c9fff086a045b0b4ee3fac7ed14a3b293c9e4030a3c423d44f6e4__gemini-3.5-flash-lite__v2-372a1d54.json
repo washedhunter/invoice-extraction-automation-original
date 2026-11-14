@@ -1,9 +1,9 @@
 {
   "sha256": "dd27d60fbe0c9fff086a045b0b4ee3fac7ed14a3b293c9e4030a3c423d44f6e4",
   "model": "gemini-3.5-flash-lite",
-  "prompt_version": "v1",
+  "prompt_version": "v2-372a1d54",
   "source_file": "inv_013.pdf",
-  "created_utc": "2026-11-14T01:42:11+00:00",
+  "created_utc": "2026-11-14T02:00:39+00:00",
   "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"INDUS LEGAL & TAX ADVISORS\",\n  \"vendor_gstin\": \"07AACFI3378N1ZY\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"ILTA/2025/6672\",\n  \"invoice_date\": \"2025-11-04\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Company Secretarial Compliance - Annual\",\n      \"hsn_sac\": \"998222\",\n      \"quantity\": 1,\n      \"unit_price\": 30900.00,\n      \"amount\": 30900.00,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 30900.00,\n  \"cgst\": 2781.00,\n  \"sgst\": 2781.00,\n  \"igst\": null,\n  \"round_off\": 0.00,\n  \"total\": 36462.00,\n  \"category\": \"Professional Services\"\n}",
   "extracted": {
     "document_type": "invoice",

@@ -1,10 +1,10 @@
 {
   "sha256": "15102a6b6255a59c98ef802271073863616fd7e319dda0f250210cbe917d1e04",
   "model": "gemini-3.5-flash-lite",
-  "prompt_version": "v1",
+  "prompt_version": "v2-372a1d54",
   "source_file": "inv_018.pdf",
-  "created_utc": "2026-11-14T01:42:17+00:00",
-  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"KONKAN CLOUD SYSTEMS LLP\",\n  \"vendor_gstin\": \"27AAOFK2290R1ZH\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"KCS-2026-3507\",\n  \"invoice_date\": \"2026-01-22\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Laptop 14in i5 16GB 512GB SSD\",\n      \"hsn_sac\": \"8471\",\n      \"quantity\": 2,\n      \"unit_price\": 59600.00,\n      \"amount\": 119200.00,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 119200.00,\n  \"cgst\": 10728.00,\n  \"sgst\": 10728.00,\n  \"igst\": null,\n  \"round_off\": 0.00,\n  \"total\": 140656.00,\n  \"category\": \"IT & Software\"\n}",
+  "created_utc": "2026-11-14T02:00:44+00:00",
+  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"KONKAN CLOUD SYSTEMS LLP\",\n  \"vendor_gstin\": \"27AAOFK2290R1ZH\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"KCS-2026-3507\",\n  \"invoice_date\": \"2026-01-22\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Laptop 14in i5 16GB 512GB SSD\",\n      \"hsn_sac\": \"8471\",\n      \"quantity\": 2,\n      \"unit_price\": 59600.0,\n      \"amount\": 119200.0,\n      \"gst_rate\": 18.0\n    }\n  ],\n  \"subtotal\": 119200.0,\n  \"cgst\": 10728.0,\n  \"sgst\": 10728.0,\n  \"igst\": null,\n  \"round_off\": 0.0,\n  \"total\": 140656.0,\n  \"category\": \"IT & Software\"\n}",
   "extracted": {
     "document_type": "invoice",
     "vendor_name": "KONKAN CLOUD SYSTEMS LLP",

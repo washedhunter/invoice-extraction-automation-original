@@ -1,9 +1,9 @@
 {
   "sha256": "9070c7710c0d87f5695d5ec219537cae7c3fb21e6b4767565374890414d3b147",
   "model": "gemini-3.5-flash-lite",
-  "prompt_version": "v1",
+  "prompt_version": "v2-372a1d54",
   "source_file": "inv_002.pdf",
-  "created_utc": "2026-11-14T01:41:55+00:00",
+  "created_utc": "2026-11-14T02:00:10+00:00",
   "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Konkan Cloud Systems LLP\",\n  \"vendor_gstin\": \"27AAOFK2290R1ZH\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"KCS-2025-5900\",\n  \"invoice_date\": \"2025-06-18\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Cloud Hosting - Standard Plan (monthly)\",\n      \"hsn_sac\": \"998315\",\n      \"quantity\": 1,\n      \"unit_price\": 5840.00,\n      \"amount\": 5840.00,\n      \"gst_rate\": 18\n    },\n    {\n      \"description\": \"Accounting Software Subscription (annual, 5 users)\",\n      \"hsn_sac\": \"998434\",\n      \"quantity\": 1,\n      \"unit_price\": 22100.00,\n      \"amount\": 22100.00,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 27940.00,\n  \"cgst\": 2514.60,\n  \"sgst\": 2514.60,\n  \"igst\": null,\n  \"round_off\": -0.20,\n  \"total\": 32969.00,\n  \"category\": \"IT & Software\"\n}",
   "extracted": {
     "document_type": "invoice",

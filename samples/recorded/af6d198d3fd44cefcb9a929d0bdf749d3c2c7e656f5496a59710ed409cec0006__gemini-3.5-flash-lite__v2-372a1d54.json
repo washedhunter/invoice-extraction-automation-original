@@ -1,10 +1,10 @@
 {
   "sha256": "af6d198d3fd44cefcb9a929d0bdf749d3c2c7e656f5496a59710ed409cec0006",
   "model": "gemini-3.5-flash-lite",
-  "prompt_version": "v1",
+  "prompt_version": "v2-372a1d54",
   "source_file": "inv_012.pdf",
-  "created_utc": "2026-11-14T01:42:10+00:00",
-  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Hotel Western Ghats Residency\",\n  \"vendor_gstin\": \"27AAEFH9032K1Z6\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"HWG-25-2260\",\n  \"invoice_date\": \"2025-10-20\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Deluxe Room (per night, tariff up to Rs 7,500)\",\n      \"hsn_sac\": \"996311\",\n      \"quantity\": 1,\n      \"unit_price\": 5530.00,\n      \"amount\": 5530.00,\n      \"gst_rate\": 12\n    }\n  ],\n  \"subtotal\": 5530.00,\n  \"cgst\": 331.80,\n  \"sgst\": 331.80,\n  \"igst\": null,\n  \"round_off\": 0.40,\n  \"total\": 6194.00,\n  \"category\": \"Travel\"\n}",
+  "created_utc": "2026-11-14T02:00:36+00:00",
+  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Hotel Western Ghats Residency\",\n  \"vendor_gstin\": \"27AAEFH9032K1Z6\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"HWG-25-2260\",\n  \"invoice_date\": \"2025-10-20\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Deluxe Room (per night, tariff up to Rs 7,500)\",\n      \"hsn_sac\": \"996311\",\n      \"quantity\": 1,\n      \"unit_price\": 5530.0,\n      \"amount\": 5530.0,\n      \"gst_rate\": 12.0\n    }\n  ],\n  \"subtotal\": 5530.0,\n  \"cgst\": 331.8,\n  \"sgst\": 331.8,\n  \"igst\": null,\n  \"round_off\": 0.4,\n  \"total\": 6194.0,\n  \"category\": \"Travel\"\n}",
   "extracted": {
     "document_type": "invoice",
     "vendor_name": "Hotel Western Ghats Residency",

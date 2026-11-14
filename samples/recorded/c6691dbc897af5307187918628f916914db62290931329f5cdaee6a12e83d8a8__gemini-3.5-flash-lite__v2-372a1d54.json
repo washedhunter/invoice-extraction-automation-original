@@ -1,10 +1,10 @@
 {
   "sha256": "c6691dbc897af5307187918628f916914db62290931329f5cdaee6a12e83d8a8",
   "model": "gemini-3.5-flash-lite",
-  "prompt_version": "v1",
+  "prompt_version": "v2-372a1d54",
   "source_file": "inv_027.pdf",
-  "created_utc": "2026-11-14T01:43:04+00:00",
-  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Powai Print & Courier Hub\",\n  \"vendor_gstin\": \"27AAPFP4470E1Z0\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"PPC/2026/7538\",\n  \"invoice_date\": \"2026-09-10\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Courier - Domestic Express (per kg)\",\n      \"hsn_sac\": \"996812\",\n      \"quantity\": 1,\n      \"unit_price\": 220.0,\n      \"amount\": 220.0,\n      \"gst_rate\": 18\n    },\n    {\n      \"description\": \"Colour Printing A3 (per sheet)\",\n      \"hsn_sac\": \"998912\",\n      \"quantity\": 52,\n      \"unit_price\": 40.0,\n      \"amount\": 2080.0,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 2300.0,\n  \"cgst\": 207.0,\n  \"sgst\": 207.0,\n  \"igst\": null,\n  \"round_off\": 0.0,\n  \"total\": 2714.0,\n  \"category\": \"Office Supplies\"\n}",
+  "created_utc": "2026-11-14T02:02:03+00:00",
+  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Powai Print & Courier Hub\",\n  \"vendor_gstin\": \"27AAPFP4470E1Z0\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"PPC/2026/7538\",\n  \"invoice_date\": \"2026-09-10\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Courier - Domestic Express (per kg)\",\n      \"hsn_sac\": \"996812\",\n      \"quantity\": 1,\n      \"unit_price\": 220.00,\n      \"amount\": 220.00,\n      \"gst_rate\": 18\n    },\n    {\n      \"description\": \"Colour Printing A3 (per sheet)\",\n      \"hsn_sac\": \"998912\",\n      \"quantity\": 52,\n      \"unit_price\": 40.00,\n      \"amount\": 2080.00,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 2300.00,\n  \"cgst\": 207.00,\n  \"sgst\": 207.00,\n  \"igst\": null,\n  \"round_off\": 0.00,\n  \"total\": 2714.00,\n  \"category\": \"Office Supplies\"\n}",
   "extracted": {
     "document_type": "invoice",
     "vendor_name": "Powai Print & Courier Hub",

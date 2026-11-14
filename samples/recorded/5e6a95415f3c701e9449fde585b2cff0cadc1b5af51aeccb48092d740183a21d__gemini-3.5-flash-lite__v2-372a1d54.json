@@ -1,10 +1,10 @@
 {
   "sha256": "5e6a95415f3c701e9449fde585b2cff0cadc1b5af51aeccb48092d740183a21d",
   "model": "gemini-3.5-flash-lite",
-  "prompt_version": "v1",
+  "prompt_version": "v2-372a1d54",
   "source_file": "inv_024.pdf",
-  "created_utc": "2026-11-14T01:43:02+00:00",
-  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Deccan Cooling Solutions Pvt Ltd\",\n  \"vendor_gstin\": \"29AAGCD5517H1ZJ\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"DCS/INV/2605/4222\",\n  \"invoice_date\": \"2026-05-14\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Split AC 1.5 Ton 3-Star Inverter\",\n      \"hsn_sac\": \"8415\",\n      \"quantity\": 1,\n      \"unit_price\": 37500.00,\n      \"amount\": 37500.00,\n      \"gst_rate\": 18\n    },\n    {\n      \"description\": \"AC Annual Maintenance Contract (per unit)\",\n      \"hsn_sac\": \"998719\",\n      \"quantity\": 4,\n      \"unit_price\": 3010.00,\n      \"amount\": 12040.00,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 50040.00,\n  \"cgst\": null,\n  \"sgst\": null,\n  \"igst\": 8917.20,\n  \"round_off\": -0.20,\n  \"total\": 58957.00,\n  \"category\": \"Repairs & Maintenance\"\n}",
+  "created_utc": "2026-11-14T02:02:02+00:00",
+  "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Deccan Cooling Solutions Pvt Ltd\",\n  \"vendor_gstin\": \"29AAGCD5517H1ZJ\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"DCS/INV/2605/4222\",\n  \"invoice_date\": \"2026-05-14\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Split AC 1.5 Ton 3-Star Inverter\",\n      \"hsn_sac\": \"8415\",\n      \"quantity\": 1,\n      \"unit_price\": 37500.0,\n      \"amount\": 37500.0,\n      \"gst_rate\": 18\n    },\n    {\n      \"description\": \"AC Annual Maintenance Contract (per unit)\",\n      \"hsn_sac\": \"998719\",\n      \"quantity\": 4,\n      \"unit_price\": 3010.0,\n      \"amount\": 12040.0,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 50040.0,\n  \"cgst\": null,\n  \"sgst\": null,\n  \"igst\": 8917.2,\n  \"round_off\": -0.2,\n  \"total\": 58957.0,\n  \"category\": \"Repairs & Maintenance\"\n}",
   "extracted": {
     "document_type": "invoice",
     "vendor_name": "Deccan Cooling Solutions Pvt Ltd",

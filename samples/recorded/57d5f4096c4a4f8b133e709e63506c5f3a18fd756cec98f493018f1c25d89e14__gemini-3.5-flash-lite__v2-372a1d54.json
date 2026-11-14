@@ -1,9 +1,9 @@
 {
   "sha256": "57d5f4096c4a4f8b133e709e63506c5f3a18fd756cec98f493018f1c25d89e14",
   "model": "gemini-3.5-flash-lite",
-  "prompt_version": "v1",
+  "prompt_version": "v2-372a1d54",
   "source_file": "inv_005.pdf",
-  "created_utc": "2026-11-14T01:42:00+00:00",
+  "created_utc": "2026-11-14T02:00:21+00:00",
   "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Indus Legal & Tax Advisors\",\n  \"vendor_gstin\": \"07AACFI3378N1ZY\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"ILTA/2025/1560\",\n  \"invoice_date\": \"2025-07-25\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Contract Review (per hour)\",\n      \"hsn_sac\": \"998212\",\n      \"quantity\": 2,\n      \"unit_price\": 3940.00,\n      \"amount\": 7880.00,\n      \"gst_rate\": 18\n    },\n    {\n      \"description\": \"Company Secretarial Compliance - Annual\",\n      \"hsn_sac\": \"998222\",\n      \"quantity\": 1,\n      \"unit_price\": 39000.00,\n      \"amount\": 39000.00,\n      \"gst_rate\": 18\n    }\n  ],\n  \"subtotal\": 46880.00,\n  \"cgst\": null,\n  \"sgst\": null,\n  \"igst\": 8438.40,\n  \"round_off\": -0.40,\n  \"total\": 55318.00,\n  \"category\": \"Professional Services\"\n}",
   "extracted": {
     "document_type": "invoice",

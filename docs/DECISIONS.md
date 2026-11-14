@@ -31,8 +31,8 @@ Tried in order on 2026-11-14, with a free-tier key:
 | Model | What happened |
 |---|---|
 | `gemini-3.8-flash` (latest stable Flash) | Every request, even "Reply OK", timed out (504 after ~60 s, or no response in 100 s). Other models answered in ~1–2 s on the same connection, so it wasn't the network. |
-| `gemini-3.6-flash` | Worked (one invoice extracted in ~10 s), but the free tier allows **20 requests per day** for this model (from the API's own 429 message), and the sample set needs 29. |
-| `gemini-3.5-flash-lite` | Processed all 29 unique documents in one run. A few 503s and one per-minute 429 were absorbed by the retry logic. |
+| `gemini-3.6-flash` | Worked (one invoice extracted in ~10 s), but the free tier allows **20 requests per day** for this model (from the API's own 429 message), and the sample set needs 30. |
+| `gemini-3.5-flash-lite` | Processed every unique document in one run, twice (29, then 30 after a sample was added). A few 503s and per-minute 429s were absorbed by the retry logic. |
 
 Accuracy was high enough on the lite model (100% on every amount, GSTIN, date and line item) that a bigger model wasn't needed for this data. The model is one line in config (or `--model`, or `INVOICE_MODEL`).
 
@@ -74,12 +74,12 @@ Three levels, strongest first: same file bytes → same vendor GSTIN + invoice n
 
 - The free tier may use inputs to improve Google's products, so real invoices must not be sent.
 - Synthetic data gives **exact ground truth** and lets errors be planted on purpose.
-- 30 documents: 10 fictional vendors in 4 states, 4 invoice layouts plus a thermal-receipt layout, varied date and number formats (`14-03-2026`, `14 Mar 2026`, `14.03.2026`, `14/03/26`; `1,23,456.00`, `Rs.`, `INR`). 9 are rasterised and given skew, noise, blur and JPEG artefacts, then saved as image-only PDFs, JPGs or PNGs, so there's no text layer to cheat with.
-- 15 clean documents and 15 with exactly one planted issue each, covering every reason code.
-- Generation is seeded and byte-identical between runs (reportlab "invariant" mode, fixed PDF dates), so cached hashes and recorded responses stay valid.
+- 31 documents: 11 fictional vendors in 4 states (one unregistered shop with no GSTIN), 4 invoice layouts plus a thermal-receipt layout, varied date and number formats (`14-03-2026`, `14 Mar 2026`, `14.03.2026`, `14/03/26`; `1,23,456.00`, `Rs.`, `INR`). 10 are rasterised and given skew, noise, blur and JPEG artefacts, then saved as image-only PDFs, JPGs or PNGs, so there's no text layer to cheat with.
+- 16 clean documents and 15 with exactly one planted issue each. They cover every reason code except `TAX_AMOUNT_MISMATCH` and `EXTRACTION_FAILED`, which are covered by unit tests only.
+- Generation is seeded. Text PDFs and ground truth are byte-identical between runs (reportlab "invariant" mode), so cached hashes and recorded responses stay valid. The scanned images are deterministic on the same library versions but can change with other Pillow/pdfium builds; CI replays the committed files rather than regenerating them.
 - **Oracle test:** the validators run on the ground truth itself, and must produce exactly the planted flags, no more and no less. If that fails, the bug is in the rules or the generator, not the model.
 
-**A ground-truth bug the evaluation found.** The thermal receipts print item names cut to 20 characters and no HSN/SAC column, but the first version of the ground truth had the full names and codes. The model read the receipts correctly and was marked wrong. The fix made the ground truth match what's printed (and added a test for it); the documents didn't change. The remaining misses, `document_type` on receipts headed "TAX INVOICE" and 4 category choices, were left as they are and reported.
+**A ground-truth bug the evaluation found.** The thermal receipts print item names cut to 20 characters and no HSN/SAC column, but the first version of the ground truth had the full names and codes. The model read the receipts correctly and was marked wrong. The fix made the ground truth match what's printed (and added a test for it); the documents didn't change. **A prompt change after the first run.** In the first run, the model called every thermal receipt headed "TAX INVOICE" an invoice (document_type 25/30). That matters: receipts have looser required fields, so a real receipt with no GSTIN would get a false `MISSING_FIELD`. The prompt and schema now define a receipt as any point-of-sale bill, whatever its heading (prompt v2). A cash-memo receipt with no GSTIN, no number and no GST was added to test exactly that case. The second run got document_type right on all 31. This was tuned on the evaluation set, and the README says so. The 4 category misses were left alone.
 
 ## 9. Evaluation (`evaluate.py`)
 
@@ -93,8 +93,12 @@ Three levels, strongest first: same file bytes → same vendor GSTIN + invoice n
 - Formatting: real Excel dates and ₹ number formats (not text), frozen headers, autofilters, conditional formatting on the status column (a reviewer can change "Review" to "OK" and the highlight goes away), a "Reviewer Notes" column, and landscape fit-to-width printing.
 - Summary: pandas pivots by vendor × month and category × month, plus a stacked column chart. Vendor names are merged across spellings (the same vendor appears in capitals on some layouts) using the normalised name and the GSTIN.
 
-## 11. Testing without the network
+## 11. Making CI meaningful
 
-- 78 offline tests cover rules, GSTIN, duplicates, generator determinism, the oracle, the extractor (fake client: retries, daily quota, bad JSON, MIME types), the pipeline, the workbook structure, the CLI and watch mode.
+The CI "demo" step replays the recorded responses and then evaluates them. On its own that could never fail: a changed sample just becomes an extraction failure. So `process --replay` exits 4 if any file has no recorded response, and `invoice-eval --strict` exits 1 on any missed planted error, false alarm, or failed or unprocessed file. A regression in rules, duplicates or samples breaks the build.
+
+## 12. Testing without the network
+
+- 87 offline tests cover rules, GSTIN, duplicates, generator determinism, the oracle, the extractor (fake client: retries, daily quota, bad JSON, MIME types), the pipeline, the workbook structure, the CLI and watch mode.
 - A pytest fixture replaces `google.genai.Client` and clears API keys for every test.
 - That fixture exists because of a real mistake during development. `load_dotenv()` looks for `.env` relative to the calling module, not the working directory, so one CLI test found the repo's real `.env` and sent the synthetic samples to Gemini, using up a day's free quota for one model. The CLI now reads `.env` only from the working directory, and tests cannot reach the API.

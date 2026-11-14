@@ -1,9 +1,9 @@
 {
   "sha256": "a1e4b9acdb2f217a1e3dd9fc08c06b91d79ad9d7d21cb48690810bd6bd83c056",
   "model": "gemini-3.5-flash-lite",
-  "prompt_version": "v1",
+  "prompt_version": "v2-372a1d54",
   "source_file": "inv_028.pdf",
-  "created_utc": "2026-11-14T01:43:06+00:00",
+  "created_utc": "2026-11-14T02:02:05+00:00",
   "raw_response": "{\n  \"document_type\": \"invoice\",\n  \"vendor_name\": \"Sahyadri Stationery Mart\",\n  \"vendor_gstin\": \"27AAKFS4821M1ZQ\",\n  \"buyer_gstin\": \"27AAJCD7315Q1Z1\",\n  \"invoice_number\": \"SSM/25-26/0562\",\n  \"invoice_date\": \"2025-09-15\",\n  \"currency\": \"INR\",\n  \"line_items\": [\n    {\n      \"description\": \"Toner Cartridge 88A Compatible\",\n      \"hsn_sac\": \"8443\",\n      \"quantity\": 3,\n      \"unit_price\": 1140.0,\n      \"amount\": 3420.0,\n      \"gst_rate\": 18.0\n    },\n    {\n      \"description\": \"Ball Pen Blue (Box of 10)\",\n      \"hsn_sac\": \"9608\",\n      \"quantity\": 9,\n      \"unit_price\": 110.0,\n      \"amount\": 990.0,\n      \"gst_rate\": 18.0\n    },\n    {\n      \"description\": \"Box File Foolscap\",\n      \"hsn_sac\": \"4820\",\n      \"quantity\": 11,\n      \"unit_price\": 85.0,\n      \"amount\": 935.0,\n      \"gst_rate\": 18.0\n    }\n  ],\n  \"subtotal\": 5345.0,\n  \"cgst\": 481.05,\n  \"sgst\": 481.05,\n  \"igst\": null,\n  \"round_off\": -0.1,\n  \"total\": 6307.0,\n  \"category\": \"Office Supplies\"\n}",
   "extracted": {
     "document_type": "invoice",
