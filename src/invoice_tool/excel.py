@@ -21,6 +21,7 @@ from invoice_tool.schema import InvoiceRecord
 from invoice_tool.summary import monthly_summaries
 
 MONEY = '"₹"#,##0.00'
+MONEY_HIDE_ZERO = '"₹"#,##0.00;-"₹"#,##0.00;""'  # blank cells instead of ₹0.00
 DATE = "dd-mmm-yyyy"
 PCT = '0.##"%"'
 HEADER_FILL = PatternFill("solid", fgColor="1F4E79")
@@ -204,7 +205,7 @@ def _pivot_block(ws: Worksheet, table: pd.DataFrame, top: int, title: str) -> tu
     for r_i, (label, values) in enumerate(table.iterrows(), header + 1):
         ws.cell(row=r_i, column=1, value=str(label))
         for c, v in enumerate(values, 2):
-            ws.cell(row=r_i, column=c, value=float(v)).number_format = MONEY
+            ws.cell(row=r_i, column=c, value=float(v)).number_format = MONEY_HIDE_ZERO
         if label == "Total":
             for c in range(1, len(cols) + 1):
                 ws.cell(row=r_i, column=c).font = Font(bold=True)
@@ -254,5 +255,11 @@ def write_workbook(records: list[InvoiceRecord], path: Path) -> Path:
     _line_items_sheet(wb.create_sheet("Line Items"), records)
     _flags_sheet(wb.create_sheet("Flags for Review"), records)
     _summary_sheet(wb.create_sheet("Monthly Summary"), records)
+    for sheet in wb.worksheets:  # print each sheet landscape, one page wide
+        sheet.page_setup.orientation = "landscape"
+        sheet.page_setup.paperSize = sheet.PAPERSIZE_A4
+        sheet.sheet_properties.pageSetUpPr.fitToPage = True
+        sheet.page_setup.fitToWidth, sheet.page_setup.fitToHeight = 1, 0
+        sheet.print_title_rows = "1:1" if sheet.title != "Monthly Summary" else None
     wb.save(path)
     return path

@@ -111,6 +111,25 @@ def test_summary_excludes_duplicates(inbox, cache, settings):
     assert by_category.loc["Total", "Total"] == pytest.approx(expected)
 
 
+def test_vendor_spellings_are_merged(clean_invoice):
+    from invoice_tool.schema import InvoiceRecord
+    from invoice_tool.summary import monthly_summaries, vendor_labels
+
+    a = InvoiceRecord(file_name="a.pdf", file_sha256="1", extracted=clean_invoice)
+    upper = clean_invoice.model_copy(
+        update={"vendor_name": "TEST VENDOR PVT. LTD.", "invoice_number": "X2", "total": 999}
+    )
+    b = InvoiceRecord(file_name="b.pdf", file_sha256="2", extracted=upper)
+    bad_gstin = clean_invoice.model_copy(
+        update={"vendor_gstin": "27AAAAA0000A1ZZ", "invoice_number": "X3", "total": 5}
+    )
+    c = InvoiceRecord(file_name="c.pdf", file_sha256="3", extracted=bad_gstin)
+    labels = vendor_labels([a, b, c])
+    assert set(labels.values()) == {"Test Vendor Pvt Ltd"}
+    by_vendor, _ = monthly_summaries([a, b, c])
+    assert list(by_vendor.index) == ["Test Vendor Pvt Ltd", "Total"]
+
+
 def test_evaluation_of_perfect_run(inbox, cache, settings, tmp_path):
     result = run(inbox, settings, cache, TruthExtractor(TRUTH))
     path = write_json(result, tmp_path / "r.json", inbox)
