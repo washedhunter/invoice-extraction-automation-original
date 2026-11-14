@@ -88,6 +88,7 @@ The 4 category misses are judgement calls, not misreads. They are a courier/prin
 
 Honest caveats:
 - **This is a second run, after tuning on the same set.** In the first run, `document_type` was 83% (25/30): every thermal receipt headed "TAX INVOICE" was called an invoice. I then clarified the receipt definition in the prompt (prompt v2) and added a cash-memo receipt with no GSTIN. The 100% above is from that second run on the same documents, so treat it as optimistic. Everything else was identical across both runs.
+- LLM output varies run to run. A fresh-clone re-run of the same command scored category 28/31 instead of 27/31 (one courier invoice switched to *Other*). Every other field and every flag was identical.
 - 31 synthetic documents is a small set, and they're cleaner than real-world scans.
 - The planted errors test the validation logic end to end, so 100% recall says the rules work when extraction is right. It doesn't mean every real-world error will be caught.
 
