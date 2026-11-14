@@ -21,6 +21,24 @@ BUYER_MH = make_gstin("27", "AAACB2222L")
 SELLER_KA = make_gstin("29", "AAACK3333M")
 
 
+class _NetworkBlocked(RuntimeError):
+    pass
+
+
+@pytest.fixture(autouse=True)
+def no_real_gemini(monkeypatch):
+    """Tests must never call the real API, even if a .env with a real key is present."""
+    import google.genai
+
+    def blocked(*_a, **_k):
+        raise _NetworkBlocked("real Gemini client created in a test")
+
+    monkeypatch.setattr(google.genai, "Client", blocked)
+    for name in ("GEMINI_API_KEY", "GOOGLE_API_KEY"):
+        monkeypatch.delenv(name, raising=False)
+    monkeypatch.setattr("invoice_tool.cli.load_dotenv", lambda *_a, **_k: False)
+
+
 @pytest.fixture
 def settings() -> Settings:
     return load_settings(REPO_ROOT / "config")

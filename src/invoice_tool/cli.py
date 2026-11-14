@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Annotated
 
 import typer
-from dotenv import load_dotenv
+from dotenv import find_dotenv, load_dotenv
 
 from invoice_tool.cache import ExtractionCache
 from invoice_tool.config import load_settings
@@ -69,7 +69,7 @@ def process(
     ] = None,
 ) -> None:
     """Process every PDF / JPG / PNG in INPUT_DIR and write the review workbook."""
-    load_dotenv()
+    load_dotenv(find_dotenv(usecwd=True))  # .env from the working directory only
     settings = load_settings(config_dir, model=model)
     if replay:
         cache = ExtractionCache(replay, PROMPT_VERSION, read_only=True)
@@ -83,6 +83,8 @@ def process(
                 max_retries=settings.max_retries,
                 initial_backoff=settings.initial_backoff_seconds,
                 max_backoff=settings.max_backoff_seconds,
+                timeout_seconds=settings.request_timeout_seconds,
+                on_retry=typer.echo,
             )
         except ExtractionError as exc:
             typer.echo(f"Error: {exc}", err=True)
