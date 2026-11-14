@@ -1,0 +1,21 @@
+# GST rate slabs (percent) that were valid on each date range.
+#
+# GST 2.0 (effective 22 September 2025) folded the 12% and 28% slabs
+# into 5% and 18% and added a 40% rate for luxury / "sin" goods. Special rates for precious
+# stones and metals (0.25%, 1.5%, 3%) were unchanged. Checked 2026-11-14; the GST Council's
+# October 2026 meeting left rates unchanged.
+#
+# This is a slab-level check: it flags a rate that was not a GST slab on the invoice date.
+# It does not check whether the rate is the right one for a particular HSN/SAC code, and it does
+# not model item-specific transition exceptions.
+
+[[periods]]
+name = "Pre GST 2.0"
+valid_from = 2017-07-01
+valid_to = 2025-09-21
+rates = [0, 0.25, 1.5, 3, 5, 12, 18, 28]
+
+[[periods]]
+name = "GST 2.0"
+valid_from = 2025-09-22
+rates = [0, 0.25, 1.5, 3, 5, 18, 40]

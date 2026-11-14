@@ -1,0 +1,34 @@
+# invoice-tool settings. Every key can be overridden with an env var INVOICE_<KEY IN CAPS>.
+
+# Gemini model used for extraction. Check https://aistudio.google.com/docs/models before changing.
+model = "gemini-3.8-flash"
+
+# Allowed difference (in rupees) when cross-checking sums, totals and tax amounts.
+amount_tolerance = 1.0
+
+# Two documents from the same vendor with the same total within this many days are near-duplicates.
+near_duplicate_days = 7
+
+# Where extraction results are cached (keyed by file SHA-256 + model + prompt version).
+cache_dir = ".cache/extractions"
+
+# Retries for rate limits (429) and transient server errors (5xx).
+max_retries = 6
+initial_backoff_seconds = 4.0
+max_backoff_seconds = 90.0
+
+# Fixed list of spending categories. Gemini must pick one of these.
+categories = [
+    "Office Supplies",
+    "IT & Software",
+    "Travel",
+    "Meals & Entertainment",
+    "Utilities",
+    "Professional Services",
+    "Repairs & Maintenance",
+    "Other",
+]
+
+# Fields that must be present. Receipts (cash memos) often lack a GSTIN or buyer details.
+required_fields_invoice = ["vendor_name", "vendor_gstin", "invoice_number", "invoice_date", "total"]
+required_fields_receipt = ["vendor_name", "invoice_date", "total"]
