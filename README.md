@@ -6,6 +6,16 @@ Reads PDF invoices and receipt photos with Gemini, pulls out vendor, GSTIN, date
 
 > All documents in this repo are **synthetic**: fictional vendors, randomly generated GSTINs, and a "SYNTHETIC TEST DOCUMENT" footer on every page. On the Gemini free tier Google may use inputs to improve its products, so no real invoices were ever sent.
 
+## At a glance
+
+| | |
+|---|---|
+| **Problem** | Accounts teams type invoice details into spreadsheets by hand and can miss wrong GST amounts or bills paid twice. |
+| **What it does** | Point it at a folder of PDF invoices and receipt photos; it fills an Excel workbook with each bill's details, lists every problem in plain English, and summarises spending by month, vendor and category. |
+| **Result** | On a 31-document test set with 15 planted mistakes and duplicates: **all 15 caught, no false alarms**, and 100% accuracy on amounts, GST numbers, dates and line items. |
+| **Built with** | Python, Gemini API (LLM), Pandas, openpyxl (Excel), pytest, GitHub Actions |
+| **See it** | Screenshots just below; `--replay` runs the full demo without an API key ([Quickstart](#quickstart)). |
+
 ## What it looks like
 
 Output workbook from the real run below, rendered with LibreOffice. Rows that need review are highlighted.
