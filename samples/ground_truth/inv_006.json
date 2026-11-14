@@ -1,0 +1,43 @@
+{
+  "file": "inv_006.pdf",
+  "layout": "A",
+  "form": "pdf",
+  "scanned": false,
+  "planted": null,
+  "expected_flags": [],
+  "related_file": null,
+  "invoice": {
+    "document_type": "invoice",
+    "vendor_name": "Hotel Western Ghats Residency",
+    "vendor_gstin": "27AAEFH9032K1Z6",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "HWG-25-2711",
+    "invoice_date": "2025-08-09",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Deluxe Room (per night, tariff up to Rs 7,500)",
+        "hsn_sac": "996311",
+        "quantity": 1.0,
+        "unit_price": 5780.0,
+        "amount": 5780.0,
+        "gst_rate": 12.0
+      },
+      {
+        "description": "Conference Hall Rental (half day)",
+        "hsn_sac": "997212",
+        "quantity": 1.0,
+        "unit_price": 9100.0,
+        "amount": 9100.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 14880.0,
+    "cgst": 1165.8,
+    "sgst": 1165.8,
+    "igst": null,
+    "round_off": 0.4,
+    "total": 17212.0,
+    "category": "Travel"
+  }
+}

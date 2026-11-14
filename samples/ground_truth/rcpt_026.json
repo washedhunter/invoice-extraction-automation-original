@@ -1,0 +1,53 @@
+{
+  "file": "rcpt_026.png",
+  "layout": "R",
+  "form": "receipt_png",
+  "scanned": true,
+  "planted": "bad_gstin",
+  "expected_flags": [
+    "GSTIN_INVALID"
+  ],
+  "related_file": null,
+  "invoice": {
+    "document_type": "receipt",
+    "vendor_name": "Marine Drive Bistro",
+    "vendor_gstin": "27AAQFM6403C1ZG",
+    "buyer_gstin": null,
+    "invoice_number": "B-05853",
+    "invoice_date": "2026-07-31",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Veg Biryani",
+        "hsn_sac": null,
+        "quantity": 2.0,
+        "unit_price": 290.0,
+        "amount": 580.0,
+        "gst_rate": 5.0
+      },
+      {
+        "description": "Fresh Lime Soda",
+        "hsn_sac": null,
+        "quantity": 4.0,
+        "unit_price": 135.0,
+        "amount": 540.0,
+        "gst_rate": 5.0
+      },
+      {
+        "description": "Filter Coffee",
+        "hsn_sac": null,
+        "quantity": 3.0,
+        "unit_price": 85.0,
+        "amount": 255.0,
+        "gst_rate": 5.0
+      }
+    ],
+    "subtotal": 1375.0,
+    "cgst": 34.38,
+    "sgst": 34.38,
+    "igst": null,
+    "round_off": 0.24,
+    "total": 1444.0,
+    "category": "Meals & Entertainment"
+  }
+}

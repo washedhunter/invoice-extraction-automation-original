@@ -1,0 +1,45 @@
+{
+  "file": "inv_022.pdf",
+  "layout": "D",
+  "form": "pdf",
+  "scanned": false,
+  "planted": "tax_type",
+  "expected_flags": [
+    "TAX_TYPE_MISMATCH"
+  ],
+  "related_file": null,
+  "invoice": {
+    "document_type": "invoice",
+    "vendor_name": "Konkan Cloud Systems LLP",
+    "vendor_gstin": "27AAOFK2290R1ZH",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "KCS-2026-2729",
+    "invoice_date": "2026-03-20",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Cloud Hosting - Standard Plan (monthly)",
+        "hsn_sac": "998315",
+        "quantity": 1.0,
+        "unit_price": 4370.0,
+        "amount": 4370.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "On-site IT Support (per visit)",
+        "hsn_sac": "998713",
+        "quantity": 3.0,
+        "unit_price": 1600.0,
+        "amount": 4800.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 9170.0,
+    "cgst": null,
+    "sgst": null,
+    "igst": 1650.6,
+    "round_off": 0.4,
+    "total": 10821.0,
+    "category": "IT & Software"
+  }
+}

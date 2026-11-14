@@ -1,0 +1,45 @@
+{
+  "file": "scan_007.pdf",
+  "layout": "B",
+  "form": "scan_pdf",
+  "scanned": true,
+  "planted": "line_sum",
+  "expected_flags": [
+    "LINE_SUM_MISMATCH"
+  ],
+  "related_file": null,
+  "invoice": {
+    "document_type": "invoice",
+    "vendor_name": "Gujarat Office Furniture Works",
+    "vendor_gstin": "24AAHFG8124P1Z1",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "GOFW/25-26/5957",
+    "invoice_date": "2025-08-21",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Steel Storage Cabinet 4-Door",
+        "hsn_sac": "9403",
+        "quantity": 2.0,
+        "unit_price": 14400.0,
+        "amount": 28800.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "Workstation Desk 1200x600",
+        "hsn_sac": "9403",
+        "quantity": 3.0,
+        "unit_price": 10400.0,
+        "amount": 31200.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 60500.0,
+    "cgst": null,
+    "sgst": null,
+    "igst": 10800.0,
+    "round_off": 0.0,
+    "total": 71300.0,
+    "category": "Office Supplies"
+  }
+}

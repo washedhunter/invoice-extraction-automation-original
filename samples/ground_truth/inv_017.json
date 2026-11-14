@@ -1,0 +1,45 @@
+{
+  "file": "inv_017.pdf",
+  "layout": "B",
+  "form": "pdf",
+  "scanned": false,
+  "planted": "bad_gstin",
+  "expected_flags": [
+    "GSTIN_INVALID"
+  ],
+  "related_file": null,
+  "invoice": {
+    "document_type": "invoice",
+    "vendor_name": "Powai Print & Courier Hub",
+    "vendor_gstin": "27AAPFP4470E1ZD",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "PPC/2026/2197",
+    "invoice_date": "2026-01-09",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Colour Printing A3 (per sheet)",
+        "hsn_sac": "998912",
+        "quantity": 52.0,
+        "unit_price": 35.0,
+        "amount": 1820.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "Spiral Binding",
+        "hsn_sac": "998912",
+        "quantity": 5.0,
+        "unit_price": 75.0,
+        "amount": 375.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 2195.0,
+    "cgst": 197.55,
+    "sgst": 197.55,
+    "igst": null,
+    "round_off": -0.1,
+    "total": 2590.0,
+    "category": "Other"
+  }
+}

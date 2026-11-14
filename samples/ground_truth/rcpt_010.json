@@ -1,0 +1,35 @@
+{
+  "file": "rcpt_010.png",
+  "layout": "R",
+  "form": "receipt_png",
+  "scanned": true,
+  "planted": null,
+  "expected_flags": [],
+  "related_file": null,
+  "invoice": {
+    "document_type": "receipt",
+    "vendor_name": "Aarey Fleet Cabs",
+    "vendor_gstin": "27AAIFA1146D1ZX",
+    "buyer_gstin": null,
+    "invoice_number": "AFC28070",
+    "invoice_date": "2025-09-30",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Local Hire 8 hrs / 80 km - Sedan",
+        "hsn_sac": "996412",
+        "quantity": 1.0,
+        "unit_price": 2270.0,
+        "amount": 2270.0,
+        "gst_rate": 5.0
+      }
+    ],
+    "subtotal": 2270.0,
+    "cgst": 56.75,
+    "sgst": 56.75,
+    "igst": null,
+    "round_off": 0.5,
+    "total": 2384.0,
+    "category": "Travel"
+  }
+}

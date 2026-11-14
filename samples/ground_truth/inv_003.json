@@ -1,0 +1,43 @@
+{
+  "file": "inv_003.pdf",
+  "layout": "C",
+  "form": "pdf",
+  "scanned": false,
+  "planted": null,
+  "expected_flags": [],
+  "related_file": null,
+  "invoice": {
+    "document_type": "invoice",
+    "vendor_name": "Deccan Cooling Solutions Pvt Ltd",
+    "vendor_gstin": "29AAGCD5517H1ZJ",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "DCS/INV/2507/5420",
+    "invoice_date": "2025-07-02",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Split AC 1.5 Ton 3-Star Inverter",
+        "hsn_sac": "8415",
+        "quantity": 1.0,
+        "unit_price": 32700.0,
+        "amount": 32700.0,
+        "gst_rate": 28.0
+      },
+      {
+        "description": "Copper Pipe Installation Kit",
+        "hsn_sac": "7411",
+        "quantity": 1.0,
+        "unit_price": 2250.0,
+        "amount": 2250.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 34950.0,
+    "cgst": null,
+    "sgst": null,
+    "igst": 9561.0,
+    "round_off": 0.0,
+    "total": 44511.0,
+    "category": "Repairs & Maintenance"
+  }
+}

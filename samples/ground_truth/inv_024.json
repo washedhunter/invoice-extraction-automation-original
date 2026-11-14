@@ -1,0 +1,45 @@
+{
+  "file": "inv_024.pdf",
+  "layout": "B",
+  "form": "pdf",
+  "scanned": false,
+  "planted": "line_sum",
+  "expected_flags": [
+    "LINE_SUM_MISMATCH"
+  ],
+  "related_file": null,
+  "invoice": {
+    "document_type": "invoice",
+    "vendor_name": "Deccan Cooling Solutions Pvt Ltd",
+    "vendor_gstin": "29AAGCD5517H1ZJ",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "DCS/INV/2605/4222",
+    "invoice_date": "2026-05-14",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Split AC 1.5 Ton 3-Star Inverter",
+        "hsn_sac": "8415",
+        "quantity": 1.0,
+        "unit_price": 37500.0,
+        "amount": 37500.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "AC Annual Maintenance Contract (per unit)",
+        "hsn_sac": "998719",
+        "quantity": 4.0,
+        "unit_price": 3010.0,
+        "amount": 12040.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 50040.0,
+    "cgst": null,
+    "sgst": null,
+    "igst": 8917.2,
+    "round_off": -0.2,
+    "total": 58957.0,
+    "category": "Repairs & Maintenance"
+  }
+}

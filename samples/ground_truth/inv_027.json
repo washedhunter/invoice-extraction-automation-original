@@ -1,0 +1,43 @@
+{
+  "file": "inv_027.pdf",
+  "layout": "A",
+  "form": "pdf",
+  "scanned": false,
+  "planted": null,
+  "expected_flags": [],
+  "related_file": null,
+  "invoice": {
+    "document_type": "invoice",
+    "vendor_name": "Powai Print & Courier Hub",
+    "vendor_gstin": "27AAPFP4470E1Z0",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "PPC/2026/7538",
+    "invoice_date": "2026-09-10",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Courier - Domestic Express (per kg)",
+        "hsn_sac": "996812",
+        "quantity": 1.0,
+        "unit_price": 220.0,
+        "amount": 220.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "Colour Printing A3 (per sheet)",
+        "hsn_sac": "998912",
+        "quantity": 52.0,
+        "unit_price": 40.0,
+        "amount": 2080.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 2300.0,
+    "cgst": 207.0,
+    "sgst": 207.0,
+    "igst": null,
+    "round_off": 0.0,
+    "total": 2714.0,
+    "category": "Other"
+  }
+}

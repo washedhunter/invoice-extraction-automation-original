@@ -1,0 +1,53 @@
+{
+  "file": "inv_028.pdf",
+  "layout": "B",
+  "form": "pdf",
+  "scanned": false,
+  "planted": "dup_reissue",
+  "expected_flags": [
+    "DUP_INVOICE_NO"
+  ],
+  "related_file": "inv_009.pdf",
+  "invoice": {
+    "document_type": "invoice",
+    "vendor_name": "Sahyadri Stationery Mart",
+    "vendor_gstin": "27AAKFS4821M1ZQ",
+    "buyer_gstin": "27AAJCD7315Q1Z1",
+    "invoice_number": "SSM/25-26/0562",
+    "invoice_date": "2025-09-15",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Toner Cartridge 88A Compatible",
+        "hsn_sac": "8443",
+        "quantity": 3.0,
+        "unit_price": 1140.0,
+        "amount": 3420.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "Ball Pen Blue (Box of 10)",
+        "hsn_sac": "9608",
+        "quantity": 9.0,
+        "unit_price": 110.0,
+        "amount": 990.0,
+        "gst_rate": 18.0
+      },
+      {
+        "description": "Box File Foolscap",
+        "hsn_sac": "4820",
+        "quantity": 11.0,
+        "unit_price": 85.0,
+        "amount": 935.0,
+        "gst_rate": 18.0
+      }
+    ],
+    "subtotal": 5345.0,
+    "cgst": 481.05,
+    "sgst": 481.05,
+    "igst": null,
+    "round_off": -0.1,
+    "total": 6307.0,
+    "category": "Office Supplies"
+  }
+}
